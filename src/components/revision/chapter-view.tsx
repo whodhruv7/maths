@@ -421,7 +421,7 @@ function ImpQView({
 
       {q.fig && (
         <img
-          src={`/figs/${q.fig}`}
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/figs/${q.fig}`}
           alt="Question figure"
           className="mt-3 w-full rounded-xl border border-zinc-800 bg-white"
         />

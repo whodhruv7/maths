@@ -1,5 +1,7 @@
 # 💖 Maths — 80/80 Mission
 
+**LIVE APP:** https://whodhruv7.github.io/maths/ ← kabhi nahi marega, 24/7 free hosting (GitHub Pages)
+
 Ek chhota, pyaara revision app **Maanu** ke liye — Ganita Manjari (Grade 9) ke saare chapters
 ek ek concept karke, bina stress, 80/80 ke liye. 💪
 
