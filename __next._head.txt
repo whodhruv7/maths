@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[97367,["/maths/_next/static/chunks/2f236954d6a65e12.js"],"ViewportBoundary"]
+3:I[97367,["/maths/_next/static/chunks/2f236954d6a65e12.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[27201,["/maths/_next/static/chunks/2f236954d6a65e12.js"],"IconMark"]
+0:{"buildId":"ma__qx6zfIUPkMSYNKlbc","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"80/80 Mission — Ganita Manjari Gr 9 Final Revision"}],["$","meta","1",{"name":"description","content":"Interactive last-night revision: saare formulas easy bhasha mein, concept-by-concept cards, 75 IMP book questions with solutions, aur 97 rapid MCQs — sab 7 chapters ka. Goal: 80/80."}],["$","meta","2",{"name":"author","content":"Z.ai"}],["$","meta","3",{"name":"keywords","content":"revision,maths,Ganita Manjari,grade 9,80/80,MCQ practice"}],["$","link","4",{"rel":"icon","href":"https://z-cdn.chatglm.cn/z-ai/static/logo.svg"}],["$","$L5","5",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"loading":null,"isPartial":false}
