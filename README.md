@@ -10,7 +10,7 @@ ek ek concept karke, bina stress, 80/80 ke liye. 💪
 - **MCQ Drill** — 97 rapid MCQs, instant right/wrong + trap analysis + Hinglish logic
 - **Readiness meter** — Learn + IMP + MCQ progress ka live 80/80 score
 - **Exam Morning Power Page** — 12 killer formulas + hall rules + 10-min drill
-- **Little love notes 💖** — har 30 min mein 2 second ke liye popup: *"I am making this for my gf 💖 · Maanu, just chill & shanti se padh 🌸 · Dont take too much stress 💪 · We can do it! 🔥"*
+- **Little love notes 💖** — har 30 min mein 2 second ke liye sweet popup: *"heyy babyieee dont worry uh can do it 💖 · just takeeee careee babyieee 🌸 · if need any help further meko dm kr dena 💬"* aur bhi sweet sweet (10 different rotating)
 - Progress browser mein save hota hai (localStorage) — refresh karo, progress safe.
 
 ## Chalane ke liye

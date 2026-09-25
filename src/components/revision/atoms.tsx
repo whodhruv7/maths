@@ -13,17 +13,22 @@ export function Html({ html, className }: { html: string; className?: string }) 
 }
 
 /* ---------------------------------------------------------------
-   LovePopup — little notes for Maanu 💖
+   LovePopup — sweet notes for babyieee 💖
    Appears for 2 seconds, then disappears. Repeats every 30 minutes.
    (First one shows ~3s after opening the app.)
    Hidden test hook: append ?love=demo to the URL to see it every 15s.
 ---------------------------------------------------------------- */
 const LOVE_MSGS = [
-  "I am making this for my gf 💖",
-  "Maanu, just chill & shanti se padh 🌸",
-  "Dont take too much stress 💪",
-  "We can do it! 🔥",
-  "80/80 loading… bas shanti se ✨",
+  "heyy babyieee dont worry uh can do it 💖",
+  "just takeeee careee babyieee 🌸",
+  "if need any help further meko dm kr dena 💬",
+  "shanti se padhooo, sab ho jayegaa babyieee ✨",
+  "uh got thiss babyieee, bas calm rehooo 💪",
+  "stressss? not todayyy. padhai full onnn 📚",
+  "chillll maro babyieee, tum kar logiiii 🌟",
+  "80/80 loading… bas babyieee ke liye 🔥",
+  "ek ek concept karooo, no rushhh 😌💕",
+  "proud of uu babyieee, keep goinggg 💖",
 ];
 
 export function LovePopup() {
