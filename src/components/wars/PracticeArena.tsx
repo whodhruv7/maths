@@ -143,7 +143,10 @@ export default function PracticeArena({ chapters, chNum, sub, onExit }: { chapte
           {status === "correct" && (
             <div role="status" className="mt-4 rounded-2xl border border-emerald-400/40 bg-emerald-400/10 p-4">
               <div className="font-black text-emerald-300">✅ Correct! Sharpened like a true warrior.</div>
-              <button onClick={next} className="mt-3 inline-flex min-h-[44px] items-center rounded-xl bg-emerald-400 px-5 py-2.5 text-sm font-black text-zinc-950 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80">Next Question →</button>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button onClick={next} className="inline-flex min-h-[44px] items-center rounded-xl bg-emerald-400 px-5 py-2.5 text-sm font-black text-zinc-950 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80">Next Question →</button>
+                <button onClick={() => setDeck(true)} className="inline-flex min-h-[44px] items-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-2.5 text-sm font-bold text-emerald-200 hover:bg-emerald-400/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60">🎬 See the steps</button>
+              </div>
             </div>
           )}
           {status === "wrong" && (
