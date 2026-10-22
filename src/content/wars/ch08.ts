@@ -1,0 +1,117 @@
+import type { ChapterContent } from "@/lib/wars/types";
+import { bank, bankSize } from "./ch08.gen";
+
+export const chapter: ChapterContent = {
+  num: 8,
+  title: "Predicting What Comes Next: Exploring Sequences and Progressions",
+  world: "Pattern Spires",
+  worldId: "pattern-spires",
+  emoji: "📈",
+  color: "#2dd4bf",
+  grad: ["#14b8a6", "#0d9488"],
+  blurb: "Climb towers built from patterns — AP stairs, GP ladders and the infinite Sierpinski sky.",
+  boss: { title: "The Infinite Stairway", desc: "Six pattern-lock gates between you and the summit. Predict or fall." },
+  bank,
+  bankSize,
+  subtopics: [
+    {
+      id: "s1",
+      title: "Patterns & Rules",
+      objectives: [
+        "Spot the rule behind a number pattern and state it as term-to-term, explicit or recursive",
+        "Predict upcoming terms of a sequence from its rule",
+        "Turn growth stories (dot patterns, machine rules) into sequences and rules",
+      ],
+      viz: { kind: "pattern", config: { mode: "ap" } },
+      gens: [
+        { id: "next-term", label: "Predict the next term" },
+        { id: "explicit-rule", label: "Evaluate explicit rules" },
+        { id: "recursive-eval", label: "Run recursive rules" },
+      ],
+      slides: [
+        { k: "hook", title: "The Staircase That Never Ends", body: "A temple staircase is built so that every step is $3$ cm taller than the one before: $12, 15, 18, 21, \\ldots$ The architect needs the height of step $100$ — but refuses to count a hundred steps. Sequences are mathematics' crystal balls: find the <b>rule</b>, and the future terms reveal themselves for free." },
+        { k: "explore", title: "Watch the Pattern Move", body: "The Pattern Lab grows dot-towers term by term. Watch the <b>term-to-term</b> arrows: what stays the same at every step? Then flip to the rule view — the same growth can be described as a jump rule ($+3$ each time) or a formula ($t_n = 3n + 9$). Two languages, one pattern." },
+        { k: "predict", title: "Predict First!", body: "A sequence begins $2, 6, 18, 54, \\ldots$ Will the next term be found by <b>adding</b> or <b>multiplying</b> — and what is it?", options: ["Multiply: $162$", "Add: $58$", "Add: $60$", "Multiply: $108$"], correct: 0, why: "Each term is $3$ times the previous: $54 \\times 3 = 162$. The gaps $4, 12, 36$ also triple — the multiplication is the real rule." },
+        { k: "explain", title: "Three Ways to Say a Rule", html: "A <b>sequence</b> is an ordered list; each number is a <b>term</b> ($t_1, t_2, t_3, \\ldots$).<br/><br/><b>1 · Term-to-term:</b> “add 2 to get the next one” — simple, but to reach $t_{100}$ you'd walk 99 steps.<br/><b>2 · Explicit rule:</b> $t_n = 2n - 1$ — jump to <i>any</i> term instantly.<br/><b>3 · Recursive rule:</b> $t_1 = 1$, $t_n = t_{n-1} + 2$ — a seed plus a forward machine.<br/><br/>Sequences can be <b>infinite</b> ($1, 2, 3, \\ldots$) or <b>finite</b> (a $6, 12, 24, 48, 96$ discount schedule). Famous citizens: naturals $1, 2, 3, \\ldots$, odds $1, 3, 5, \\ldots$, triangulars $1, 3, 6, 10, \\ldots$, squares $1, 4, 9, 16, \\ldots$" },
+        { k: "example", title: "Worked Example", steps: ["Find the first five terms of the sequence with explicit rule $t_n = 3n - 4$ for $n \\ge 1$.", "Substitute each $n$: $t_1 = 3(1) - 4 = -1$.", "$t_2 = 3(2) - 4 = 2$, $t_3 = 3(3) - 4 = 5$.", "$t_4 = 8$ and $t_5 = 11$.", "Sequence: $-1, 2, 5, 8, 11$ — and notice it grows by $3$ every time, so it is also $t_1 = -1$, $t_n = t_{n-1} + 3$."] },
+        { k: "mistake", title: "Trap Alarm", body: "Never trust a rule after one glance. In $2, 6, 18, 54$ the <b>gaps</b> ($4, 12, 36$) are not constant — the pattern multiplies by $3$. Check your rule against <b>every</b> consecutive pair shown before you predict. And a rule that fits three terms can still fail the fourth: test it, don't vibe it." },
+        { k: "check", title: "Quick Check", body: "A sequence follows the recursive rule $u_1 = 1$, $u_n = 2u_{n-1} + 3$. It begins $1, 5, 13, 29, \\ldots$ What is the next term?", options: ["51", "58", "61", "87"], correct: 2, why: "$u_5 = 2 \\times 29 + 3 = 61$. The rule eats the previous term and doubles-then-adds-3." },
+      ],
+    },
+    {
+      id: "s2",
+      title: "Arithmetic Progressions",
+      objectives: [
+        "Test whether a sequence is an AP and find its common difference",
+        "Use $a_n = a + (n-1)d$ to find any term, a missing term, or the term number",
+        "Model real bills, fares and salaries as arithmetic progressions",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "pattern", config: { mode: "ap" } },
+      gens: [
+        { id: "ap-nth", label: "AP nth term & which term" },
+        { id: "ap-find-d", label: "Find a or d from terms" },
+        { id: "ap-missing", label: "Missing AP terms" },
+      ],
+      slides: [
+        { k: "hook", title: "The Taxi Meter", body: "A city taxi charges a fixed booking fee of ₹200 plus ₹40 per kilometre. The meter reads $240, 280, 320, \\ldots$ as the kilometres tick by (Book Example 5). Every kilometre adds <b>exactly</b> the same amount — that flat rhythm is called an <b>arithmetic progression</b>, and it runs city bills, salaries, staircases and gym schedules." },
+        { k: "explore", title: "Climb the AP Stairs", body: "In the Pattern Lab, AP mode stacks dot-columns that grow by a constant $d$: even steps for $d = 2$, steep for $d = 7$. Drag $d$ negative and the staircase flips upside down — $11, 8, 5, 2, -1$ descends below the floor. The plotted points of any AP always line up perfectly straight." },
+        { k: "predict", title: "Predict First!", body: "The AP $11, 8, 5, 2, \\ldots$ keeps marching. What is its 5th term?", options: ["$-1$", "$0$", "$1$", "$-3$"], correct: 0, why: "The common difference is $d = -3$: each term drops by 3. So $2 - 3 = -1$. Negative $d$ just means descending stairs." },
+        { k: "explain", title: "The nth-Term Engine", html: "An AP has first term $a$ and <b>common difference</b> $d = t_n - t_{n-1}$.<br/><br/><b>Explicit engine:</b> $a_n = a + (n-1)d$ — the $(n-1)$ counts the jumps needed to leave $t_1$.<br/><b>Recursive twin:</b> $t_1 = a$, $t_n = t_{n-1} + d$.<br/><br/>Two known terms crack the whole code: $d = \\frac{t_q - t_p}{q - p}$. And the middle term of any three consecutive terms is the <b>arithmetic mean</b> of its neighbours: $b = \\frac{a + c}{2}$." },
+        { k: "example", title: "Worked Example", steps: ["Find the 10th and 26th terms of the AP: $3, 8, 13, 18, \\ldots$ (Book Exercise 8.2)", "Here $a = 3$ and $d = 8 - 3 = 5$.", "$a_{10} = 3 + (10-1) \\times 5 = 3 + 45 = 48$.", "$a_{26} = 3 + (26-1) \\times 5 = 3 + 125 = 128$.", "Notice: 16 extra terms cost exactly $16 \\times 5 = 80$ more — the AP grows linearly."] },
+        { k: "mistake", title: "Trap Alarm", body: "The classic off-by-one: the <b>5th</b> term is $a + 4d$, not $a + 5d$ — five terms means only <b>four</b> jumps from the first. Same in reverse: to find which term equals $m$, compute $\\frac{m - a}{d} + 1$ — forgetting the final $+1$ reports the number of jumps, not the term number." },
+        { k: "check", title: "Quick Check", body: "Which term of the AP $21, 18, 15, \\ldots$ is $-81$? (Book Exercise 8.2 Q2)", options: ["34th", "35th", "36th", "It never appears"], correct: 1, why: "$21 + (n-1)(-3) = -81 \\Rightarrow (n-1)(-3) = -102 \\Rightarrow n - 1 = 34$, so $n = 35$." },
+      ],
+    },
+    {
+      id: "s3",
+      title: "Sums & the Gauss Trick",
+      objectives: [
+        "Derive and apply the Gauss pairing trick to sum $1 + 2 + \\cdots + n$",
+        "Use $n(n+1)/2$ and $n^2$ shortcuts for naturals and odd numbers",
+        "Compute applied totals (theatre seats, savings, marble pyramids) and range sums",
+      ],
+      prereq: ["s2"],
+      viz: { kind: "pattern", config: { mode: "sums" } },
+      gens: [
+        { id: "sum-naturals", label: "Gauss sums & range sums" },
+        { id: "sum-odd", label: "Odd/even number sums" },
+        { id: "ap-sum-word", label: "Applied AP sums" },
+      ],
+      slides: [
+        { k: "hook", title: "The Schoolboy Who Shocked His Teacher", body: "A teacher told young Gauss to add $1 + 2 + \\cdots + 100$ to keep the class busy. Seconds later he had $5050$ — he hadn't added, he'd <b>paired</b>: $1+100$, $2+99$, … fifty pairs each worth $101$. Centuries earlier, Āryabhaṭa wrote the same rule in the Āryabhaṭīya (2.19). One clever rearrangement beat a hundred additions." },
+        { k: "explore", title: "The Pairing Machine", body: "In the Pattern Lab's sums mode, drag the $n$ slider and watch the staircase of dots flip and slot into a rectangle: $n$ by $(n+1)$, cut in half. That half-rectangle <b>is</b> the formula $\\frac{n(n+1)}{2}$. Switch to odd mode and watch $1 + 3 + 5 + \\cdots$ snap into a perfect $n \\times n$ square." },
+        { k: "predict", title: "Predict First!", body: "Without adding: $1 + 3 + 5 + \\cdots + 19$ — ten odd numbers — totals…", options: ["90", "100", "110", "55"], correct: 1, why: "The first $n$ odd numbers always sum to $n^2$. Here $n = 10$, so the sum is $10^2 = 100$." },
+        { k: "explain", title: "Two Power Formulas", html: "<b>Gauss / Āryabhata:</b> $S_n = 1 + 2 + \\cdots + n = \\frac{n(n+1)}{2}$ — write the sum forwards and backwards, pair columns to $n+1$.<br/><b>Odds:</b> $1 + 3 + \\cdots + (2n-1) = n^2$; <b>evens:</b> $2 + 4 + \\cdots + 2n = n(n+1)$.<br/><br/><b>Range sums</b> (like the book's $25 + 26 + \\cdots + 58$): take the big triangle and shave off the unwanted prefix — $S_{58} - S_{24}$.<br/>For any AP, $S_n = \\frac{n}{2}\\big(2a + (n-1)d\\big)$ = rows × average row — Āryabhaṭa's “first + last, halved, times the count.”" },
+        { k: "example", title: "Worked Example", steps: ["Find $25 + 26 + 27 + \\cdots + 58$ (Book §8.5).", "Range sum = $S_{58} - S_{24}$ — subtract $1 + 2 + \\cdots + 24$.", "$S_{58} = \\frac{58 \\times 59}{2} = 29 \\times 59 = 1711$.", "$S_{24} = \\frac{24 \\times 25}{2} = 12 \\times 25 = 300$.", "Answer: $1711 - 300 = 1411$."] },
+        { k: "mistake", title: "Trap Alarm", body: "Range sums shave off $S_{a-1}$, <b>not</b> $S_a$ — subtracting $S_{25}$ for the sum from $25$ would erase the $25$ you needed. Second trap: odds sum to $n^2$ but evens sum to $n(n+1)$; using $n^2$ for evens loses the extra $n$. Always ask: <i>how many terms</i>, and <i>which formula family</i>?" },
+        { k: "check", title: "Quick Check", body: "A child arranges marbles in rows: 1 in the first row, 2 in the second, 3 in the third, up to 25 rows. How many marbles in all? (Book Exercise 8.2 Q7)", options: ["300", "325", "350", "625"], correct: 1, why: "$1 + 2 + \\cdots + 25 = \\frac{25 \\times 26}{2} = 25 \\times 13 = 325$." },
+      ],
+    },
+    {
+      id: "s4",
+      title: "Geometric Progressions & Wild Patterns",
+      objectives: [
+        "Identify geometric progressions by their common ratio and compute $b_n = ar^{n-1}$",
+        "Count triangles and area in the Sierpiński fractal using powers of 3",
+        "Generate the Virahanka–Fibonacci sequence and use it to count patterns",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "pattern", config: { mode: "sierpinski" } },
+      gens: [
+        { id: "gp-nth", label: "GP terms & bouncing balls" },
+        { id: "sierpinski", label: "Sierpinski fractal counts" },
+        { id: "virahanka", label: "Virahanka–Fibonacci" },
+      ],
+      slides: [
+        { k: "hook", title: "The Fractal You Can Hold", body: "Take a paper triangle, cut a triangle from its middle, then cut the middle of every triangle that survives — forever. That is the <b>Sierpiński triangle</b>: $1, 3, 9, 27$ black triangles at stages $0, 1, 2, 3$. Meanwhile in 7th-century India, Virahānka counted poetry rhythms and found $1, 2, 3, 5, 8, 13, \\ldots$ — patterns that don't add evenly. Welcome to the wild side of sequences." },
+        { k: "explore", title: "Fractal Sky & GP Ladder", body: "The Pattern Lab's fractal mode gives you a <b>depth slider</b>: watch the Sierpiński triangle triple its black count while its black area shrinks by a quarter each stage. Then ride the GP ladder: drag the ratio $r$ from $2$ to $\\frac{1}{2}$ and feel the difference between exploding, growing, and vanishing." },
+        { k: "predict", title: "Predict First!", body: "The book's green-square pattern (Fig. 8.6) reads $3, 6, 12, 24, \\ldots$ — each stage doubles. What comes next?", options: ["30", "36", "48", "96"], correct: 2, why: "The counts multiply by $2$ every stage: $24 \\times 2 = 48$. In a GP the <b>ratio</b> is constant, not the gap." },
+        { k: "explain", title: "Multiplying, Not Adding", html: "A <b>geometric progression</b> has constant <b>ratio</b> $r$: $b_n = a r^{\\,n-1}$ (first term $a$, and $n-1$ multiplications to reach term $n$).<br/><br/><b>Sierpiński:</b> black triangles $3^k$; black area $\\left(\\frac{3}{4}\\right)^k$ of the original. The carpet version: $8^k$ squares, area $\\left(\\frac{8}{9}\\right)^k$.<br/><b>Bouncing ball:</b> heights form a GP with ratio $\\frac{3}{4}$ (or whatever the rebound is).<br/><b>Virahanka:</b> $V_1 = 1$, $V_2 = 2$, $V_n = V_{n-1} + V_{n-2}$ — $1, 2, 3, 5, 8, 13, \\ldots$ A <i>two-term</i> recursion, counting rhythms of short and long syllables." },
+        { k: "example", title: "Worked Example", steps: ["A ball dropped from $24$ ft rebounds to $\\frac{3}{4}$ of its previous height each time (Book §8.6). Find the heights of the first three bounces.", "Bounce 1: $24 \\times \\frac{3}{4} = 18$ ft.", "Bounce 2: $18 \\times \\frac{3}{4} = 13.5$ ft.", "Bounce 3: $13.5 \\times \\frac{3}{4} = 10.125$ ft.", "The heights $18, 13.5, 10.125, \\ldots$ form a GP with $a = 18$, $r = \\frac{3}{4}$ — after $k$ bounces the height is $24\\left(\\frac{3}{4}\\right)^k$ ft."] },
+        { k: "mistake", title: "Trap Alarm", body: "Two classic GP traps. <b>Exponent slip:</b> $b_n = ar^{n-1}$, so $b_4 = ar^3$ — three jumps, not four. <b>Bracket slip:</b> with $r = -2$, the 4th term is $a(-2)^3 = -8a$; writing $-2^3 = -8$ without brackets computes $-(2^3)$, which coincides here but for even powers like $(-2)^4 = 16$ it catastrophically disagrees. Negative ratios make the sequence zig-zag — track the sign." },
+        { k: "check", title: "Quick Check", body: "How many black triangles does the Sierpiński triangle have at Stage 4?", options: ["27", "36", "64", "81"], correct: 3, why: "Stage $k$ has $3^k$ black triangles: $3^4 = 81$. (Its white holes, meanwhile, number $\\frac{3^4 - 1}{2} = 40$.)" },
+      ],
+    },
+  ],
+};

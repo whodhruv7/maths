@@ -1,38 +1,51 @@
-# 💖 Maths — 80/80 Mission
+# ⚔️ MATHS WARS — Class 9 Maths, Weaponised
 
-**LIVE APP:** https://whodhruv7.github.io/maths/ ← kabhi nahi marega, 24/7 free hosting (GitHub Pages)
+**MATHS WARS** is a 3D-first learning & practice platform for **Class 9 mathematics (Ganita Manjari)**, built for **VidyaSaathy**.
 
-Ek chhota, pyaara revision app **Maanu** ke liye — Ganita Manjari (Grade 9) ke saare chapters
-ek ek concept karke, bina stress, 80/80 ke liye. 💪
+Learning is the core mechanic — not decoration. Every concept follows the loop:
+**UNDERSTAND → EXPLORE → PREDICT → SOLVE → VERIFY → PRACTISE → MASTER**
 
-## Kya hai isme
+## 🌍 The 8 Worlds
+| # | World | Chapter |
+|---|-------|---------|
+| 1 | Number Realm | Number Systems & Exponents |
+| 2 | Linear Legion | Linear Equations (1 & 2 Variables) |
+| 3 | Pattern Forge | Sequences & Progressions |
+| 4 | Identity Forge | Algebraic Identities & Factorisation |
+| 5 | Coordinate Islands | Coordinate Geometry |
+| 6 | Geometry Forts | Perimeter & Area |
+| 7 | Chance Citadel | Probability |
+| 8 | The Proof Chambers | Proofs & Reasoning |
 
-- **Learn mode** — one concept at a time: formula → easy bhasha meaning → tiny example (7 chapters: 1, 2, 3, 4, 6, 7, 8)
-- **IMP Qs** — 75 most-likely exam questions, solutions hide → reveal (steps + answer + why)
-- **MCQ Drill** — 97 rapid MCQs, instant right/wrong + trap analysis + Hinglish logic
-- **Readiness meter** — Learn + IMP + MCQ progress ka live 80/80 score
-- **Exam Morning Power Page** — 12 killer formulas + hall rules + 10-min drill
-- **Little love notes 💖** — har 30 min mein 2 second ke liye sweet popup: *"heyy babyieee dont worry uh can do it 💖 · just takeeee careee babyieee 🌸 · if need any help further meko dm kr dena 💬"* aur bhi sweet sweet (10 different rotating)
-- Progress browser mein save hota hai (localStorage) — refresh karo, progress safe.
+*(actual world names/themes come from the chapter registry — see `src/content/wars/`)*
 
-## Chalane ke liye
+## ✨ Features
+- **7-stage lessons** per subtopic: Hook → Explore → Predict → Explain → Guided example → Common mistake → Check
+- **Interactive 3D / 2D labs**: CoordLab, CircleLab, GeometryLab, NumberLineLab, AlgebraLab, ChanceLab, PatternLab (React Three Fiber + KaTeX)
+- **Paper-first practice**: the app asks you to work on paper *before* checking — MCQ, numeric, fraction, expression, multi-select, true/false
+- **Massive question bank**: 32+ parameterised generators per chapter set → **millions of unique, auto-validated questions** (every answer computed from parameters, never hand-typed)
+- **Step-by-step Solution Deck**: reveal one step at a time, final answer pops, common mistakes called out
+- **Boss battles**: slay the chapter boss (need 55% chapter mastery) — 6 rounds, 5 to win
+- **Progress without pressure**: XP, levels, mastery %, weak-spot radar — no timers, no lives, no streaks
+- **Everything saved locally** (localStorage) — no account needed
 
+## 🚀 Run locally
 ```bash
-bun install        # ya npm install
-bunx prisma generate
-bun run dev        # http://localhost:3000
+bun install
+bun run dev
+# open http://localhost:3000 → ⚔️ Enter the Battlefield
 ```
 
-Popup jaldi dekhna hai? `?love=demo` URL ke aage laga do (har 15 sec mein aayega).
+## 📦 Deploy (GitHub Pages)
+```bash
+STATIC_EXPORT=1 bunx next build   # → out/
+# push out/ to gh-pages branch with .nojekyll
+```
 
-## PDFs (`pdfs/`)
+## 🗂 Structure
+- `src/app/wars/` — landing + game shell routes
+- `src/components/wars/` — GameShell, LessonViewer, PracticeArena, BossView, ProgressView, SolutionDeck, viz labs
+- `src/content/wars/` — 8 chapters × 4 subtopics × 7 slides + question generators (`chNN.gen.ts`)
+- `src/lib/wars/` — types, engine, progress
 
-| File | Kya hai |
-|------|---------|
-| `Ganita_Manjari_Grade9_Final_Revision_Sheet.pdf` | 65-page one-night revision (formulas + IMP Qs + rapid MCQs) |
-| `Ganita_Manjari_Grade9_Ch8_Sequences_and_Progressions.pdf` | Chapter 8 full workbook (120 Q + 20 MCQ + 20 CTC) |
-| `Ganita_Manjari_Grade9_Final_Workbook.pdf` | Full workbook — 6 chapters × 160 questions |
-| `Ganita_Manjari_Grade9_Practice_Workbook.pdf` | Compact practice workbook |
-| `Ganita_Manjari_Grade9_Advanced_Practice_Book.pdf` | Complete advanced practice book |
-
-**All the best Maanu — 80/80 pakka! 🌸**
+Built with Next.js 16 · TypeScript · Tailwind 4 · React Three Fiber · KaTeX

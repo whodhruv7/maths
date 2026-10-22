@@ -1,0 +1,116 @@
+import type { ChapterContent } from "@/lib/wars/types";
+import { bank, bankSize } from "./ch01.gen";
+
+export const chapter: ChapterContent = {
+  num: 1,
+  title: "Orienting Yourself: The Use of Coordinates",
+  world: "Coordinate Islands",
+  worldId: "coord-isles",
+  emoji: "🏝️",
+  color: "#22d3ee",
+  grad: ["#06b6d4", "#0ea5e9"],
+  blurb: "Chart the endless azure sea with ordered pairs — every point a destination, every coordinate a course.",
+  boss: { title: "The Cartographer's Trial", desc: "Six navigation nightmares across the archipelago. Chart them all, or be lost at sea." },
+  bank,
+  bankSize,
+  subtopics: [
+    {
+      id: "s1",
+      title: "The Cartesian Plane",
+      objectives: [
+        "Name the parts of the Cartesian plane — axes, origin and the four quadrants",
+        "State the sign pattern of each quadrant instantly (which signs live where)",
+        "Explain why an ordered pair pins down exactly one location in the plane",
+      ],
+      viz: { kind: "coord", config: { mode: "points" } },
+      gens: [
+        { id: "quad-identify", label: "Quadrant identification" },
+        { id: "mcq-signs", label: "Sign rules & reflections" },
+      ],
+      slides: [
+        { k: "hook", title: "Lost at Sea", body: "You wash ashore on an unnamed island. “Where exactly are you?” has no answer until the map hands you two numbers — how far across, how far up. Four thousand years ago the cities of the Sindhu–Sarasvatī Civilisation were built on precisely this idea: streets in perfect north–south and east–west grids, every shop findable by counting from the city centre. Two numbers can pin down any spot on Earth. Welcome to the Coordinate Islands." },
+        { k: "explore", title: "Meet the Plane", body: "Drag points <b>A</b> and <b>B</b> around the coordinate lab. Watch the quadrant label flip as you cross an axis, and hover the crosshair to probe any coordinate. Notice: cross to the left of the vertical axis and $x$ goes negative; dip below the horizontal axis and $y$ goes negative. The origin $O(0, 0)$ is the only point that lives on both axes." },
+        { k: "predict", title: "Predict First!", body: "A point has $x = -3$ and $y = 5$. Where does it live?", options: ["Quadrant I", "Quadrant II", "Quadrant III", "Quadrant IV"], correct: 1, why: "Negative $x$ sends it left of the y-axis; positive $y$ keeps it above the x-axis. Left-and-up is exactly Quadrant II, the $(-, +)$ zone." },
+        { k: "explain", title: "Two Axes, Four Quadrants", html: "The plane is ruled by two perpendicular <b>number lines</b>: the horizontal <b>x-axis</b> and the vertical <b>y-axis</b>, meeting at the <b>origin</b> $O(0, 0)$.<br/><br/>Every point receives an <b>ordered pair</b> $(x, y)$ — its signed distance along the x-direction, then the y-direction.<br/><b>Quadrant I:</b> $(+, +)$ · <b>II:</b> $(-, +)$ · <b>III:</b> $(-, -)$ · <b>IV:</b> $(+, -)$ — numbered anticlockwise from the top-right.<br/>The axes themselves belong to <b>no quadrant</b>: $(3, 0)$ simply sits on the x-axis.<br/><br/>This is why coordinates work: the two numbers are <i>independent addresses</i>. Knowing $x$ tells you nothing about $y$, so exactly one point matches each pair — Descartes' great fusion of algebra and geometry, built on Brahmagupta's zero and negatives." },
+        { k: "example", title: "Worked Example", steps: ["Describe the position of the point $(2, -4)$.", "Start at the origin $O(0, 0)$.", "$x = 2$ is positive: move $2$ units right along the x-axis.", "$y = -4$ is negative: turn and move $4$ units down.", "The point sits right-and-down — in Quadrant IV, $2$ units from the y-axis and $4$ below the x-axis."] },
+        { k: "mistake", title: "Trap Alarm", body: "$(2, -4)$ and $(-4, 2)$ are different points — swapping the order mirrors the point across the diagonal. The pair is <b>ordered</b>: $x$ first, $y$ second, no exceptions. And remember: a zero coordinate means the point is on an axis, which belongs to no quadrant at all." },
+        { k: "check", title: "Quick Check", body: "Which sign pattern belongs to Quadrant III?", options: ["$(+, +)$", "$(-, +)$", "$(-, -)$", "$(+, -)$"], correct: 2, why: "Quadrant III is bottom-left: left of the y-axis means $x < 0$, below the x-axis means $y < 0$." },
+      ],
+    },
+    {
+      id: "s2",
+      title: "Plotting & Reading Points",
+      objectives: [
+        "Plot a point from its ordered pair with grid-square precision",
+        "Read off the coordinates of any plotted or described point",
+        "Convert between position descriptions, axis distances and ordered pairs",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "coord", config: { mode: "points" } },
+      gens: [
+        { id: "plot-read", label: "From description to coordinates" },
+        { id: "collinear-check", label: "Points on the axes" },
+      ],
+      slides: [
+        { k: "hook", title: "One Step From Riches", body: "The treasure map says: “dig at $(4, 2)$”. You dig at $(2, 4)$. You find sand, an angry crab, and no treasure. Reading and plotting points is the whole game on the Coordinate Islands — one swapped digit and you are celebrating on the wrong island." },
+        { k: "explore", title: "Probe the Grid", body: "Hover the crosshair anywhere on the lab's plane and read off coordinates — it snaps to the nearest $0.5$, just like careful plotting. Then drag <b>A</b> to $(3, -2)$ and <b>B</b> to $(-2.5, 3)$: count the grid squares for each coordinate <i>before</i> you trust the label." },
+        { k: "predict", title: "Predict First!", body: "A buoy floats exactly $3$ units right of the y-axis and $2$ units below the x-axis. Its coordinates are…", options: ["$(3, 2)$", "$(-3, 2)$", "$(3, -2)$", "$(-3, -2)$"], correct: 2, why: "Right of the y-axis → $x = +3$. Below the x-axis → $y = -2$. Read x-first: $(3, -2)$." },
+        { k: "explain", title: "Abscissa Meets Ordinate", html: "To <b>plot</b> $(x, y)$: start at $O$, walk $|x|$ units along the x-axis (right if $+$, left if $-$), turn $90°$, then walk $|y|$ units (up if $+$, down if $-$).<br/><br/><b>Vocabulary:</b> the $x$-value is the <b>abscissa</b>, the $y$-value is the <b>ordinate</b>.<br/><b>Position clues:</b> a point's distance <i>from the y-axis</i> is $|x|$; from the x-axis it is $|y|$ — the quadrant supplies the signs.<br/>Points like $(0, 4)$ or $(-2, 0)$ sit exactly <b>on an axis</b>: precise addresses on the line itself, outside every quadrant." },
+        { k: "example", title: "Worked Example", steps: ["Plot $(-2.5, 3)$ and describe its position.", "Start at $O(0, 0)$.", "Abscissa $= -2.5$: move $2.5$ units left along the x-axis.", "Ordinate $= 3$: turn and rise $3$ units.", "The point sits halfway between the $-3$ and $-2$ grid lines — halfway marks matter when coordinates are decimals.", "Result: Quadrant II, $2.5$ left of the y-axis and $3$ above the x-axis."] },
+        { k: "mistake", title: "Trap Alarm", body: "Students call $(0, 4)$ “Quadrant II because it's up top”. No! A zero coordinate means the point is <b>on an axis</b>, which belongs to no quadrant. Always check for zeros <i>before</i> naming a quadrant — and watch the mirrored decoys $(0, 6)$ vs $(6, 0)$." },
+        { k: "check", title: "Quick Check", body: "Where does the point $(-4, 0)$ lie?", options: ["Quadrant II", "Quadrant III", "On the x-axis", "On the y-axis"], correct: 2, why: "The y-coordinate is $0$, so the point sits exactly on the x-axis, $4$ units left of the origin." },
+      ],
+    },
+    {
+      id: "s3",
+      title: "Distance Between Two Points",
+      objectives: [
+        "Find horizontal and vertical distances between points on the grid",
+        "Derive and apply $d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$ via Pythagoras",
+        "Compute distances from the axes and the origin, and use the midpoint formula",
+      ],
+      prereq: ["s2"],
+      viz: { kind: "coord", config: { mode: "points" } },
+      gens: [
+        { id: "axis-dist", label: "Distance from axes & origin" },
+        { id: "dist-formula", label: "Distance between two points" },
+        { id: "midpoint", label: "Midpoints (and reverse)" },
+        { id: "shape-shape", label: "Shape from vertices" },
+      ],
+      slides: [
+        { k: "hook", title: "The Swim to the Lighthouse", body: "Your boat bobs at $(-4, -2)$; the lighthouse beacon burns at $(5, 10)$. The current forbids zig-zags — you must swim the straight line. The ancient surveyors of Bhārat left you a gift: Baudhāyana's right triangles. Every straight distance on a grid is the hypotenuse of a hidden right triangle, waiting to be uncovered." },
+        { k: "explore", title: "Run and Rise", body: "Drag <b>A</b> and <b>B</b> in the lab and watch the readout: horizontal run, vertical rise, and the direct distance. Set the run to $3$ and the rise to $4$ — the 3-4-5 triangle appears in the readout. Try $6$-$8$ and $5$-$12$: Pythagoras is hiding inside every pair of points." },
+        { k: "predict", title: "Predict First!", body: "The straight-line distance between $(1, 2)$ and $(4, 6)$ is…", options: ["$5$", "$7$", "$\\sqrt{7}$", "$25$"], correct: 0, why: "Run $= 3$, rise $= 4$, so $d = \\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$. Not $3 + 4 = 7$ — that's the along-the-grid path, not the straight line." },
+        { k: "explain", title: "Pythagoras, Weaponised", html: "Between $A(x_1, y_1)$ and $B(x_2, y_2)$: the horizontal run is $|x_2 - x_1|$ and the vertical rise is $|y_2 - y_1|$. They meet at a right angle, so Pythagoras gives<br/><br/>$d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$<br/><br/><b>Distances from reference lines:</b> from the x-axis → $|y|$; from the y-axis → $|x|$; from the origin → $\\sqrt{x^2 + y^2}$.<br/><b>Midpoint</b> of $AB$: $M = \\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$ — the average of the ends.<br/><br/>Squaring erases minus signs, so it never matters which point you call first." },
+        { k: "example", title: "Worked Example", steps: ["Find the distance between $A(-2, 3)$ and $B(6, -3)$.", "Run: $\\Delta x = 6 - (-2) = 8$.", "Rise: $\\Delta y = -3 - 3 = -6$; the sign will vanish when squared.", "$d = \\sqrt{8^2 + (-6)^2} = \\sqrt{64 + 36} = \\sqrt{100} = 10$.", "Distance $AB = 10$ units — a hidden 6-8-10 triangle."] },
+        { k: "mistake", title: "Trap Alarm", body: "$\\sqrt{a^2 + b^2} \\ne a + b$. With run $3$ and rise $4$ the distance is $5$, not $7$ — and $\\sqrt{9} + \\sqrt{16} = 7 \\ne 5$ shows you can't split the root either. Sum the squares <i>first</i>, then take one single square root." },
+        { k: "check", title: "Quick Check", body: "The distance of the point $(-7, 5)$ from the y-axis is…", options: ["$5$", "$7$", "$\\sqrt{74}$", "$12$"], correct: 1, why: "Distance from the y-axis is $|x| = |-7| = 7$. ($\\sqrt{74}$ would be the distance from the origin — a different question.)" },
+      ],
+    },
+    {
+      id: "s4",
+      title: "Coordinates in the Wild",
+      objectives: [
+        "Solve map, chessboard and treasure-hunt problems with coordinates",
+        "Compute shortest paths along grid lines: $|\\Delta x| + |\\Delta y|$",
+        "Model real situations — scales, via-points, missing corners — on the plane",
+      ],
+      prereq: ["s3"],
+      viz: { kind: "coord", config: { mode: "points" } },
+      gens: [
+        { id: "apply-dist", label: "Distance word problems" },
+        { id: "path-len", label: "Grid-path (taxicab) lengths" },
+        { id: "missing-vertex", label: "Missing rectangle corner" },
+      ],
+      slides: [
+        { k: "hook", title: "The Rook's Route", body: "A rook on a chessboard slides along rows and columns only. From its square it can eventually reach any other square — but the journey is measured in grid steps, never in the crow's diagonal. Taxi routes, delivery drones, treasure maps: the wild is full of journeys where the shortest <i>allowed</i> route is not the straight line." },
+        { k: "explore", title: "Two Distances, One Pair", body: "In the lab, drag <b>A</b> and <b>B</b> apart and compare two numbers: the straight-line distance in the readout, and the along-the-grid journey $|\\Delta x| + |\\Delta y|$ you'd travel if diagonals were forbidden. Make the two readouts disagree — after that you will never confuse “as the crow flies” with “as the taxi drives” again." },
+        { k: "predict", title: "Predict First!", body: "A rook at $(2, 3)$ must reach $(6, 7)$ moving along grid lines only. The shortest path has length…", options: ["$4$", "$8$", "$\\sqrt{32}$", "$16$"], correct: 1, why: "Horizontal: $|6 - 2| = 4$. Vertical: $|7 - 3| = 4$. Total $4 + 4 = 8$ grid units. ($\\sqrt{32}$ is the straight-line distance — illegal for a rook.)" },
+        { k: "explain", title: "Grid Paths in the Real World", html: "<b>Grid-path (taxicab) length</b> from $A$ to $B$: $|x_2 - x_1| + |y_2 - y_1|$ — across then up (or up then across; the total is the same).<br/><b>Map scales:</b> if $1$ grid unit $= 100$ m, find the grid distance <i>first</i>, then multiply.<br/><b>Compulsory stops:</b> a via-point splits the journey into two grid paths — add them.<br/><b>Missing corners:</b> in an axis-aligned rectangle, the fourth vertex borrows $x$ from one neighbour and $y$ from the other.<br/><br/>Word problems are just these three moves wearing costumes — strip the story, run the maths, dress the answer back up." },
+        { k: "example", title: "Worked Example", steps: ["A rover rolls from $A(1, 1)$ to $C(5, 4)$, then to $B(8, 2)$, along grid lines only. Total distance?", "Leg 1 $A \\to C$: $|5 - 1| + |4 - 1| = 4 + 3 = 7$.", "Leg 2 $C \\to B$: $|8 - 5| + |2 - 4| = 3 + 2 = 5$.", "Total: $7 + 5 = 12$ grid units.", "(The straight line $AB = \\sqrt{7^2 + 1^2} = \\sqrt{50} \\approx 7.07$ is irrelevant — the rover cannot leave the roads.)"] },
+        { k: "mistake", title: "Trap Alarm", body: "Read the verbs! “Walks the streets / slides along rows” → grid path $|\\Delta x| + |\\Delta y|$. “Flies / swims in a straight line” → distance formula. Mixing them up is the #1 error in this topic. And a via-point journey is <i>two</i> paths added — never compute $A$ straight to $B$." },
+        { k: "check", title: "Quick Check", body: "On a map with 1 unit = 10 m, two palms at $(1, 2)$ and $(4, 6)$ are joined by a straight tunnel. Its length is…", options: ["$70$ m", "$50$ m", "$5$ m", "$90$ m"], correct: 1, why: "Straight-line: $\\sqrt{3^2 + 4^2} = 5$ units, then scale: $5 \\times 10 = 50$ m. (The grid path would be $3 + 4 = 7$ units $= 70$ m — a different question!)" },
+      ],
+    },
+  ],
+};

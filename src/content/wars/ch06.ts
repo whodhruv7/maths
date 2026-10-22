@@ -1,0 +1,116 @@
+import type { ChapterContent } from "@/lib/wars/types";
+import { bank, bankSize } from "./ch06.gen";
+
+export const chapter: ChapterContent = {
+  num: 6,
+  title: "Measuring Space: Perimeter and Area",
+  world: "Measurelands",
+  worldId: "measurelands",
+  emoji: "📐",
+  color: "#fb923c",
+  grad: ["#f97316", "#ea580c"],
+  blurb: "Fence the fields, tile the plazas, unroll the circle itself — land is power, and measurement is the law.",
+  boss: { title: "The Grand Survey", desc: "Six impossible plots await the royal surveyor. Measure them or lose your stamp." },
+  bank,
+  bankSize,
+  subtopics: [
+    {
+      id: "s1",
+      title: "Perimeter Basics",
+      objectives: [
+        "Compute perimeters of rectangles, triangles, parallelograms and regular polygons",
+        "Find missing sides from a given perimeter",
+        "Explain why equal perimeters can enclose very different areas",
+      ],
+      viz: { kind: "geometry", config: { mode: "perimeter", shapes: ["rectangle", "triangle", "parallelogram", "regular-polygon"], draggable: true, liveReadout: ["perimeter"] } },
+      gens: [
+        { id: "peri-poly", label: "Perimeter of polygons" },
+        { id: "peri-puzzle", label: "Same perimeter, different area" },
+      ],
+      slides: [
+        { k: "hook", title: "The Rope-Stretchers' Secret", body: "Every year the Nile flooded and wiped the field boundaries flat. Egypt's *harpedonaptai* — the rope-stretchers — re-measured the kingdom with knotted cords, because land was tax and tax was power. A lord offers you $24$ m of royal rope for a goat pen. Infinite pens share that rope: $1 \\times 11$, $4 \\times 8$, $6 \\times 6$… Which one keeps the happiest goat?" },
+        { k: "explore", title: "Walk the Border", body: "In the GeometryLab, drag the corners of each shape and watch the perimeter readout. Notice the insect rule: <b>perimeter is the total walk around the border</b> — the inside never matters. Then try the missing-side puzzles: the perimeter already knows every side; you just have to interrogate it." },
+        { k: "predict", title: "Predict First!", body: "A square of side $5$ m and a $2 \\text{ m} \\times 8 \\text{ m}$ rectangle stand side by side. Which has the larger perimeter?", options: ["The square", "The rectangle", "They are equal", "Cannot be determined"], correct: 2, why: "Square: $4 \\times 5 = 20$ m. Rectangle: $2(2 + 8) = 20$ m. The same rope, two very different fields — perimeter alone never tells the whole story." },
+        { k: "explain", title: "The Walk-Around Formulas", html: "Perimeter = the insect's journey. Add every side.<br/><br/><b>Square:</b> $P = 4a$ &nbsp;·&nbsp; <b>Rectangle:</b> $P = 2(l + w)$ &nbsp;·&nbsp; <b>Triangle:</b> $P = a + b + c$<br/><b>Regular $n$-gon:</b> $P = n \\times s$ &nbsp;·&nbsp; <b>Parallelogram:</b> $P = 2(a + b)$ — the <i>height</i> is irrelevant; it lives inside the shape, not on the fence.<br/><br/><b>Missing side?</b> The perimeter is a budget: $\\text{side} = P - (\\text{known sides})$.<br/>And the paradox engine: one perimeter, infinitely many shapes — which is why the rope-stretchers' guild also needed <b>area</b>." },
+        { k: "example", title: "Worked Example", steps: ["A pentagon has perimeter $36$ cm; four sides measure $7, 5, 8, 4$ cm. Find the fifth side.", "Known sides: $7 + 5 + 8 + 4 = 24$ cm.", "The perimeter is the grand total: $24 + x = 36$.", "$x = 36 - 24 = 12$ cm.", "Check: $7 + 5 + 8 + 4 + 12 = 36$ ✓"] },
+        { k: "mistake", title: "Trap Alarm", body: "Using the <b>height</b> in a parallelogram's perimeter. Base $10$, slant side $6$, height $5$: the true perimeter is $2(10 + 6) = 32$, not $2(10 + 5) = 30$. The height cuts through the <i>inside</i> of the shape — no insect ever walks it." },
+        { k: "check", title: "Quick Check", body: "A rectangle has perimeter $30$ cm and length $9$ cm. Find its width (in cm).", options: ["21", "6", "12", "15"], correct: 1, why: "$l + w = 30 \\div 2 = 15$, so $w = 15 - 9 = 6$. (Choosing 21 means you forgot to halve first.)" },
+      ],
+    },
+    {
+      id: "s2",
+      title: "π and the Circle's Edge",
+      objectives: [
+        "Discover π as the constant ratio C/d shared by every circle",
+        "Compute circumference from radius or diameter, choosing 22/7 or 3.14 correctly",
+        "Find arc lengths as fractions of the whole circumference",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "geometry", config: { mode: "circle-unroll", showCOverD: true, approximations: ["3.14", "22/7"], arcAngleSlider: true } },
+      gens: [
+        { id: "circumference", label: "Circumference of circles" },
+        { id: "arc-length", label: "Arc lengths" },
+        { id: "mcq-pi", label: "π concepts" },
+      ],
+      slides: [
+        { k: "hook", title: "Why Sprinters Start Unevenly", body: "At the start of a $4 \\times 100$ m relay, outer-lane athletes stand several metres ahead of the inner lane — the <i>stagger</i>. Same finish line, different starting points. Why? Every lane's curve is a different circle, and the extra curved length is pure $\\pi$. Whoever computes $\\pi$ correctly draws the fair starting line." },
+        { k: "explore", title: "Unroll the Circle", body: "In the circle-unroll demo, peel the circumference off a circle and lay it against the diameter: it fits a little more than <b>3 times</b> — for a coin, a charkha wheel, a ferris wheel, always the same ratio $\\tfrac{C}{d} \\approx 3.14$. Slide the arc angle and watch an arc trade places with the fraction $\\tfrac{\\theta}{360}$ of the full rim." },
+        { k: "predict", title: "Predict First!", body: "You measure $\\tfrac{C}{d}$ for a tiny coin and for a giant ferris wheel. Comparing the two ratios, the ferris wheel's is…", options: ["Much bigger", "Slightly bigger", "Exactly the same", "Impossible to know"], correct: 2, why: "The ratio is $\\pi$ for <i>every</i> circle — that is what makes π a universal constant. Size changes C and d together; the ratio never moves." },
+        { k: "explain", title: "The Constant of the Realm", html: "<b>Definition:</b> $\\pi = \\dfrac{C}{d}$, the same for every circle. Āryabhaṭa (499 CE) already had $\\pi \\approx 3.1416$.<br/><br/><b>Formulas:</b> $C = \\pi d = 2\\pi r$.<br/><b>Which π?</b> The question commands it: use $\\tfrac{22}{7}$ when the radius/diameter is a friendly multiple of $7$ (answers come out exact), otherwise $3.14$ with decimals. Never mix them mid-solution.<br/><br/><b>Arc length:</b> $L = \\dfrac{\\theta}{360} \\times 2\\pi r$ — an arc is just a slice of the rim, and $\\tfrac{\\theta}{360}$ is the slice's share of the full turn." },
+        { k: "example", title: "Worked Example", steps: ["Find the length of a $60^\\circ$ arc of a circle of radius $21$ cm (take $\\pi = \\tfrac{22}{7}$).", "Full circumference: $C = 2 \\times \\tfrac{22}{7} \\times 21 = 132$ cm.", "The arc's share: $\\tfrac{60}{360} = \\tfrac{1}{6}$.", "Arc $= \\tfrac{1}{6} \\times 132 = 22$ cm.", "Sanity check: six such arcs rebuild the whole circle ✓"] },
+        { k: "mistake", title: "Trap Alarm", body: "Three classic slips. (1) Treating $\\tfrac{22}{7}$ as <i>exact</i> π — it is $3.\\overline{142857}$, off by $0.0013$. (2) Using $\\tfrac{\\theta}{180}$ or $\\tfrac{\\theta}{100}$ for the arc fraction — a full turn is $360^\\circ$, no other number. (3) Writing $C = \\pi r$ — that is the <i>semicircle arc</i>; the full circle needs $2\\pi r$." },
+        { k: "check", title: "Quick Check", body: "Find the length of a $90^\\circ$ arc of a circle of radius $14$ cm (take $\\pi = \\tfrac{22}{7}$), in cm.", options: ["11", "22", "44", "88"], correct: 1, why: "$C = 2 \\times \\tfrac{22}{7} \\times 14 = 88$ cm; a $90^\\circ$ arc is $\\tfrac{90}{360} = \\tfrac{1}{4}$ of it: $88 \\div 4 = 22$ cm." },
+      ],
+    },
+    {
+      id: "s3",
+      title: "Areas I — Straight Edges",
+      objectives: [
+        "Derive and apply rectangle, parallelogram and triangle area formulas",
+        "Explain why the perpendicular height (not the slant side) drives area",
+        "Solve cost, fencing and border-path word problems, and work backwards from area",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "geometry", config: { mode: "area-tiling", shapes: ["rectangle", "parallelogram", "triangle"], unitSquares: true, draggable: true, showSlantTrap: true } },
+      gens: [
+        { id: "area-rect", label: "Rectangle areas & costs" },
+        { id: "area-para-tri", label: "Parallelogram & triangle areas" },
+        { id: "reverse-area", label: "Work backwards from area" },
+      ],
+      slides: [
+        { k: "hook", title: "Tiling the Royal Plaza", body: "The Measurelands plaza is $6$ m by $4$ m. How many $1\\text{ m}^2$ stone slabs? $24$ — counted in $4$ rows of $6$. Now the king tilts one wall of the plaza outward, keeping the same base and the same height. Same slabs? The tax collector says yes. The eye says no. Mathematics must judge." },
+        { k: "explore", title: "Tile, Shear, Split", body: "In the tiling lab: fill a rectangle with unit squares ($\\text{rows} \\times \\text{columns} = l \\times b$). Then drag its top edge sideways into a parallelogram — every column slants but <b>no tile is lost</b>: area stays base × height. Finally cut a triangle out: two copies stack back into the parallelogram, so a triangle is exactly <b>half</b>." },
+        { k: "predict", title: "Predict First!", body: "A parallelogram has base $10$ cm, slant side $6$ cm, and perpendicular height $5$ cm. Its area is…", options: ["$60$ cm² (base × slant)", "$50$ cm² (base × height)", "$30$ cm² (half of 60)", "Cannot be determined"], correct: 1, why: "Only the <i>perpendicular</i> height measures the true stack of tiles: $A = 10 \\times 5 = 50$ cm². The slant side $6$ is a liar for area — tilt adds length, not coverage." },
+        { k: "explain", title: "The Straight-Edge Toolkit", html: "<b>Rectangle:</b> $A = l \\times b$ — rows × columns of unit squares.<br/><b>Parallelogram:</b> $A = b \\times h$ — cut the end triangle, shift it across: a sheared rectangle keeps its area. Height means the <i>perpendicular</i> distance between bases.<br/><b>Triangle:</b> $A = \\tfrac{1}{2} b h$ — two copies make the matching parallelogram.<br/><br/><b>Running formulas backwards:</b> missing side $= A \\div$ known side; triangle height $= \\tfrac{2A}{b}$.<br/><b>Money:</b> tiling costs by <i>area</i> (₹ per m²); fencing costs by <i>length</i> (₹ per m) — pick the right currency." },
+        { k: "example", title: "Worked Example", steps: ["A parallelogram has base $12$ cm, slant side $8$ cm and height $5$ cm. Find its area and perimeter.", "Area (perpendicular height only): $A = 12 \\times 5 = 60$ cm$^2$.", "Trap refused: $12 \\times 8 = 96$ treats the slant as a height — rejected.", "Perimeter (sides only, height irrelevant): $P = 2(12 + 8) = 40$ cm.", "Answer: $A = 60$ cm$^2$, $P = 40$ cm."] },
+        { k: "mistake", title: "Trap Alarm", body: "The slant-height scam: for any leaning shape, <b>base × slant side overestimates the area</b>. The slant is the hypotenuse of a right triangle whose legs are the true height and the sideways drift — a hypotenuse always beats its leg. Also: forgetting $\\tfrac{1}{2}$ in triangle areas, and using a height that belongs to a different base. Height and base must meet at right angles." },
+        { k: "check", title: "Quick Check", body: "Which parallelogram has the larger area?", options: ["Base $8$, height $6$", "Base $10$, slant side $6$, height $4$", "They are equal", "Cannot be determined"], correct: 0, why: "First: $8 \\times 6 = 48$. Second: $10 \\times 4 = 40$ (slant $6$ is a decoy). The 'smaller-looking' one wins — area obeys perpendicular height, not bravado." },
+      ],
+    },
+    {
+      id: "s4",
+      title: "Areas II — Curves & Combos",
+      objectives: [
+        "Compute circle and ring (annulus) areas with πr² and π(R² − r²)",
+        "Split combined shapes — L-shapes, tracks, frames — into known parts",
+        "Defuse classic area–perimeter paradoxes, including the semicircle's missing lid",
+      ],
+      prereq: ["s3", "s2"],
+      viz: { kind: "geometry", config: { mode: "area-combos", shapes: ["circle", "ring", "l-shape", "track"], liveFormulas: true } },
+      gens: [
+        { id: "area-circle", label: "Circle & ring areas" },
+        { id: "combo-shape", label: "L-shapes & tracks" },
+        { id: "semi-circle", label: "Semicircle measures" },
+      ],
+      slides: [
+        { k: "hook", title: "The Surveyor's Impossible Plots", body: "The Grand Survey has arrived: a ring-shaped racetrack around a circular keep, an L-shaped fortress yard with a tower notch, a semicircular amphitheatre open to the river. No straight ruler alone survives here. But every plot surrenders to one strategy: <b>cut what is known, subtract what is missing, and let π handle the curves</b>." },
+        { k: "explore", title: "Slice, Rearrange, Subtract", body: "In the combos lab: slice a circle into sectors and interlock them — they snap into a near-parallelogram of base $\\pi r$ (half the rim) and height $r$, so its area is $\\pi r \\times r = \\pi r^2$. Then punch a smaller circle out: the ring's area is $\\pi R^2 - \\pi r^2$. Finally drag an L-shape's notch and watch its perimeter <b>refuse to change</b>." },
+        { k: "predict", title: "Predict First!", body: "From a circle of radius $14$, a circle of radius $7$ is cut out. What fraction of the big circle remains?", options: ["Half", "A quarter", "Three quarters", "Seven eighths"], correct: 2, why: "Areas scale as $r^2$: small circle has $7^2 = 49$, big has $14^2 = 196$, so it removes $\\tfrac{49}{196} = \\tfrac{1}{4}$. Remaining: $\\tfrac{3}{4}$. Radii halved → areas quartered, not halved." },
+        { k: "explain", title: "Curves, Rings and Combinations", html: "<b>Circle:</b> $A = \\pi r^2$ — the sector-rearrangement proof: a 'triangle' with legs $\\pi r$ and $r$.<br/><b>Ring (annulus):</b> $A = \\pi(R^2 - r^2)$ — subtract the punched disc. <i>Not</i> $\\pi(R - r)^2$!<br/><b>Combined figures:</b> split into rectangles/triangles/circles, or enclose-and-subtract.<br/><b>Push-out trick:</b> a rectangular notch cut from a corner changes neither the perimeter nor the fence bill — every inward step is cancelled by an outward one: $P = 2(a + b)$.<br/><b>Semicircle:</b> arc $\\pi r$, <b>plus</b> the diameter lid $2r$; area $\\tfrac{1}{2}\\pi r^2$." },
+        { k: "example", title: "Worked Example", steps: ["An L-yard: a $12$ m × $9$ m rectangle with a $4$ m × $5$ m corner removed. Find area and perimeter.", "Area: full $12 \\times 9 = 108$; notch $4 \\times 5 = 20$; yard $= 108 - 20 = 88$ m$^2$.", "Perimeter by the push-out trick: $P = 2(12 + 9) = 42$ m.", "Verify by walking the six sides: $12 + 4 + 4 + 5 + 8 + 9 = 42$ ✓", "Answer: $88$ m$^2$ and $42$ m — the notch moved the fence, never lengthened it."] },
+        { k: "mistake", title: "Trap Alarm", body: "Ring roulette: $\\pi(R - r)^2$ is <b>wrong</b>. With $R = 14, r = 7$: correct $\\pi(196 - 49) = 147\\pi$, but $\\pi(7)^2 = 49\\pi$ — you'd lose two-thirds of the ring. Track traps: two semicircular ends make <b>one</b> circle of the end diameter (not two), and its contribution to the boundary is $\\pi d$, not $d$. Semicircle fence: forgetting the $2r$ lid is the oldest error in Measurelands." },
+        { k: "check", title: "Quick Check", body: "A ring has outer radius $14$ m and inner radius $7$ m. Its area (take $\\pi = \\tfrac{22}{7}$), in m², is…", options: ["154", "462", "616", "308"], correct: 1, why: "$\\pi(R^2 - r^2) = \\tfrac{22}{7}(196 - 49) = \\tfrac{22}{7} \\times 147 = 462$ m². (154 is just the outer circle's area; 308 forgets to subtract properly.)" },
+      ],
+    },
+  ],
+};

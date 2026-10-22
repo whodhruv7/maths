@@ -1,0 +1,118 @@
+import type { ChapterContent } from "@/lib/wars/types";
+import { bank, bankSize } from "./ch04.gen";
+
+export const chapter: ChapterContent = {
+  num: 4,
+  title: "Exploring Algebraic Identities",
+  world: "Identity Forge",
+  worldId: "identity-forge",
+  emoji: "🔨",
+  color: "#fb7185",
+  grad: ["#f43f5e", "#e11d48"],
+  blurb: "Hammer expressions into new shapes on the forge — area models, tiles and identities that never break.",
+  boss: { title: "The Molten Core", desc: "Six white-hot identity challenges from the deepest forge. Do not let the metal cool." },
+  bank,
+  bankSize,
+  subtopics: [
+    {
+      id: "s1",
+      title: "Visualising Identities",
+      objectives: [
+        "Prove $(a+b)^2 = a^2 + 2ab + b^2$ by splitting a square into tiles",
+        "See why $(a-b)^2$ keeps $+b^2$ and loses $2ab$ — straight from the picture",
+        "Rearrange $a^2 - b^2$ into a rectangle to prove the difference of squares",
+      ],
+      viz: { kind: "algebra", config: { mode: "plus" } },
+      gens: [
+        { id: "expand-square", label: "Expand binomial squares" },
+        { id: "eval-area", label: "Area-model problems" },
+        { id: "identity-pick", label: "Pick the right identity" },
+      ],
+      slides: [
+        { k: "hook", title: "The Case of the Missing Tiles", body: "A floor-layer is tiling a square courtyard with side $(a + b)$ metres. The apprentice orders paint for $a^2 + b^2$ square metres — and runs out before the job is done. The courtyard itself exposes him: some tiles went missing. Where are they hiding?" },
+        { k: "explore", title: "Build the Square, Tile by Tile", body: "Drag the sliders in the lab and watch the big square of side $(a + b)$ assemble itself: one gold $a^2$ tile, <b>two</b> sky-blue $ab$ strips, and one emerald $b^2$ corner. Slide $a$ and $b$ — the layout always spells $a^2 + 2ab + b^2$. Then flip the chips to try $(a-b)^2$ and the cut-and-slide $(a+b)(a-b)$ model." },
+        { k: "predict", title: "Predict First!", body: "In the tile picture of $(a+b)^2$, how many $ab$ strips appear?", options: ["One", "Two", "None — it is only $a^2$ and $b^2$"], correct: 1, why: "Two arms each carry one strip — along the top and down the side. That is exactly the $2ab$ middle term. One strip (or none) is the apprentice's error." },
+        { k: "explain", title: "Three Proofs You Can Stand On", html: "Algebraic identities are <i>geometric facts</i> — you can walk on them.<br/><br/><b>1. $(a+b)^2$:</b> split a square of side $a+b$ into $a^2$, two $ab$ strips and $b^2$. So $(a+b)^2 = a^2 + 2ab + b^2$.<br/><b>2. $(a-b)^2$:</b> from the $a^2$ square, an $ab$ strip is cut off the top and another off the side. The $b^2$ corner got subtracted <i>twice</i>, so add it back once: $a^2 - 2ab + b^2$.<br/><b>3. $a^2 - b^2$:</b> cut the $b^2$ corner off the big square. The leftover L-shape slides around into a rectangle of sides $(a+b)$ and $(a-b)$ — so $a^2 - b^2 = (a+b)(a-b)$.<br/><br/>Indian mathematicians of the bījagaṇita tradition read formulas exactly this way — as shapes, not just symbols." },
+        { k: "example", title: "Worked Example", steps: ["A courtyard has side $(10 + 4)$ m. Find its area with the tile model.", "Four pieces: $10^2 = 100$, two strips of $10 \\times 4 = 40$ each, and $4^2 = 16$.", "Total: $100 + 40 + 40 + 16 = 196$.", "Check directly: $14 \\times 14 = 196$ ✓ — the identity never lies."] },
+        { k: "mistake", title: "Trap Alarm", body: "$(a+b)^2 \\ne a^2 + b^2$ — the two strips are the whole point, and they never evaporate. Twin trap: $(a-b)^2 = a^2 - 2ab + b^2$ <b>ends with $+b^2$</b>. Squaring erases the minus from the corner tile." },
+        { k: "check", title: "Quick Check", body: "An $L$-shaped leftover appears when a $b^2$ square is cut from an $a^2$ square. It rearranges into…", options: ["a square of side $(a-b)$", "a rectangle $(a+b) \\times (a-b)$", "a square of side $(a+b)$"], correct: 1, why: "The L-shape reassembles into a rectangle with sides $(a+b)$ and $(a-b)$ — the classic proof that $a^2 - b^2 = (a+b)(a-b)$." },
+      ],
+    },
+    {
+      id: "s2",
+      title: "The Core Identity Family",
+      objectives: [
+        "Expand with $(a \\pm b)^2$, $(a+b)(a-b)$ and $(x+a)(x+b)$ at speed",
+        "Squash mental arithmetic like $102^2$ and $97 \\times 103$ using identities",
+        "Match coefficients to find unknowns inside identities",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "algebra", config: { mode: "mental" } },
+      gens: [
+        { id: "mental-square", label: "Mental squares & products" },
+        { id: "expand-prod", label: "Expand products" },
+        { id: "coeff-find", label: "Match coefficients" },
+        { id: "tri-sq-combo", label: "Three-term squares" },
+      ],
+      slides: [
+        { k: "hook", title: "The 3-Second Squared", body: "A shopkeeper quotes $102^2$ before your calculator wakes up: “$(100+2)^2 = 10000 + 400 + 4 = 10404$.” No pen, no panic. Identities are mental machines — and this subtopic hands you the whole family." },
+        { k: "explore", title: "The Mental Maths Machine", body: "Switch the lab to <b>mental maths</b> mode and watch $47 \\times 53$ melt into $(50-3)(50+3) = 50^2 - 3^2 = 2441$. The strips and corners you met in s1 are still there — just wearing number costumes." },
+        { k: "predict", title: "Predict First!", body: "Compute $97 \\times 103$ the identity way.", options: ["$9991$", "$10009$", "$9982$", "$9996$"], correct: 0, why: "Equal offsets: $(100-3)(100+3) = 100^2 - 3^2 = 10000 - 9 = 9991$. The difference of squares does the work — no long multiplication." },
+        { k: "explain", title: "Meet the Family", html: "Four identities run this forge:<br/><br/>① $(a+b)^2 = a^2 + 2ab + b^2$ &nbsp;② $(a-b)^2 = a^2 - 2ab + b^2$<br/>③ $(a+b)(a-b) = a^2 - b^2$ &nbsp;④ $(x+a)(x+b) = x^2 + (a+b)x + ab$<br/><br/><b>Mental moves:</b> $102^2 = (100+2)^2 = 10000 + 400 + 4$. $97 \\times 103 = (100-3)(100+3) = 9991$.<br/><b>Identity ④</b> is the tile rectangle: the two $ax$ and $bx$ strips merge into $(a+b)x$, while $ab$ hides in the corner.<br/><br/>And identity ① scales up: $(a+b+c)^2 = a^2+b^2+c^2 + 2(ab+bc+ca)$ — three squares, three doubled products." },
+        { k: "example", title: "Worked Example", steps: ["Compute $102^2$ and the coefficient of $x$ in $(x+5)(x+3)$.", "$102^2 = (100+2)^2 = 100^2 + 2(100)(2) + 2^2 = 10000 + 400 + 4 = 10404$.", "For $(x+5)(x+3)$: sum $= 5 + 3 = 8$ rides with $x$; product $= 15$ stands alone.", "So $(x+5)(x+3) = x^2 + 8x + 15$ — middle coefficient $8$."] },
+        { k: "mistake", title: "Trap Alarm", body: "The difference-of-squares trick needs <b>equal offsets</b>: $97 \\times 103$ fits, but $97 \\times 104$ does not — don't force it. And in $(x+a)(x+b)$, the <b>sum</b> $a+b$ goes with $x$ while the <b>product</b> $ab$ stands alone. Swapping them scrambles everything." },
+        { k: "check", title: "Quick Check", body: "What is the coefficient of $x$ in the expansion of $(x+5)(x+3)$?", options: ["$8$", "$15$", "$35$", "$2$"], correct: 0, why: "$(x+a)(x+b) = x^2 + (a+b)x + ab$ — the middle coefficient is the sum $5 + 3 = 8$. (15 is the constant; 35 and 2 are decoys.)" },
+      ],
+    },
+    {
+      id: "s3",
+      title: "Cubes & New Identities",
+      objectives: [
+        "Expand $(a \\pm b)^3$ using the 1-3-3-1 pattern",
+        "Derive and apply the crown identities $a^3 \\pm b^3$",
+        "Evaluate $a^3 + b^3$ knowing only $a+b$ and $ab$",
+      ],
+      prereq: ["s2"],
+      viz: { kind: "algebra", config: { mode: "plus" } },
+      gens: [
+        { id: "cube-expand", label: "Expand cubes" },
+        { id: "cube-identity", label: "Crown cube identities" },
+      ],
+      slides: [
+        { k: "hook", title: "1729, the Taxicab Number", body: "Hardy once told Ramanujan his taxi number, 1729, seemed dull. Ramanujan replied instantly: it is the <b>smallest number expressible as the sum of two cubes in two different ways</b> — $1729 = 1^3 + 12^3 = 9^3 + 10^3$. Cubes carry secret identities. Time to steal them." },
+        { k: "explore", title: "From Tiles to Slabs", body: "The lab's $(a+b)^2$ picture is your launchpad. Stack a third dimension: the big cube of side $(a+b)$ builds from four kinds of slabs — one $a^3$ block, <b>three</b> $a^2b$ slabs, <b>three</b> $ab^2$ slabs, one $b^3$ corner. Count them: $1-3-3-1$." },
+        { k: "predict", title: "Predict First!", body: "How many terms does the expansion of $(a+b)^3$ have?", options: ["$2$", "$4$", "$8$"], correct: 1, why: "$(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$ — four terms, coefficients $1, 3, 3, 1$ (Pascal's triangle, row three). Not 2 (that's the myth) and not 8 (that's the volume of 8 corner cubes)." },
+        { k: "explain", title: "Deriving the Crown Jewels", html: "<b>Build the cube:</b> $(a+b)^3 = (a+b)^2(a+b) = (a^2 + 2ab + b^2)(a+b)$, and multiplying out gives $a^3 + 3a^2b + 3ab^2 + b^3$.<br/><br/><b>Now the heist:</b> rearrange it as $a^3 + b^3 = (a+b)^3 - 3ab(a+b)$ — the <b>crown identity</b>. Notice you never need $a$ and $b$ separately, only their sum $a+b$ and product $ab$.<br/><br/><b>Twin identity:</b> $a^3 - b^3 = (a-b)^3 + 3ab(a-b)$ — the same skeleton, but the $3ab(a-b)$ correction is <i>added</i> back.<br/><br/>Also factorised form: $a^3 - b^3 = (a-b)(a^2+ab+b^2)$ and $a^3 + b^3 = (a+b)(a^2-ab+b^2)$." },
+        { k: "example", title: "Worked Example", steps: ["Given $a + b = 10$ and $ab = 20$, find $a^3 + b^3$ — without finding $a$ and $b$.", "Crown identity: $a^3 + b^3 = (a+b)^3 - 3ab(a+b)$.", "Substitute: $(10)^3 - 3(20)(10) = 1000 - 600$.", "Answer: $a^3 + b^3 = 400$. (Indeed $a=5, b=5$: $125 + 125 = 400$ ✓.)"] },
+        { k: "mistake", title: "Trap Alarm", body: "$(a+b)^3 \\ne a^3 + b^3$. Proof: $(2+3)^3 = 125$ but $2^3 + 3^3 = 35$. The two middle terms $3a^2b + 3ab^2$ are the whole story. Twin trap: for $a^3 - b^3$, the correction term $3ab(a-b)$ is <b>added</b> — the plus repairs what the difference removed." },
+        { k: "check", title: "Quick Check", body: "If $a - b = 4$ and $ab = 5$, what is $a^3 - b^3$?", options: ["$124$", "$44$", "$84$", "$64$"], correct: 0, why: "$a^3 - b^3 = (a-b)^3 + 3ab(a-b) = 64 + 3 \\times 5 \\times 4 = 64 + 60 = 124$." },
+      ],
+    },
+    {
+      id: "s4",
+      title: "Factorisation & Rational Expressions",
+      objectives: [
+        "Factorise by pulling out the greatest common factor",
+        "Crack four-term expressions by grouping and trinomials by product–sum",
+        "Simplify rational expressions by cancelling whole factors, then evaluate",
+      ],
+      prereq: ["s2", "s3"],
+      viz: { kind: "algebra", config: { mode: "xplus" } },
+      gens: [
+        { id: "factor-common", label: "Common factors" },
+        { id: "factor-group", label: "Grouping" },
+        { id: "factor-trinomial", label: "Trinomial factors" },
+        { id: "rational-simplify", label: "Rational expressions" },
+      ],
+      slides: [
+        { k: "hook", title: "The Safe-Cracker's Art", body: "Expansion hammers brackets into polynomials. Factorisation runs the forge <b>backwards</b>: the polynomial is a locked safe, and its factors are the key. Every $x^2 + bx + c$ you'll meet today was built by multiplying — your job is to remember what made it." },
+        { k: "explore", title: "Read Factors off the Tiles", body: "In the lab's $(x+a)(x+b)$ mode, the rectangle splits into $x^2$, an $ax$ strip, a $bx$ strip and an $ab$ corner — merging into $x^2 + (a+b)x + ab$. Factorising is reading the tiles backwards: given the floor plan, recover the two brackets." },
+        { k: "predict", title: "Predict First!", body: "Which pair cracks the safe $x^2 + 7x + 12$?", options: ["$(x+2)(x+6)$", "$(x+3)(x+4)$", "$(x+1)(x+12)$"], correct: 1, why: "You need two numbers with product $12$ and sum $7$: that is $3$ and $4$. Option 1 gives product 12 but sum 8; option 3 gives sum 13. Only $(x+3)(x+4)$ fits both." },
+        { k: "explain", title: "The Four Forge Moves", html: "<b>① Common factor:</b> pull out the GCF — $6x^2 + 9x = 3x(2x + 3)$. Shared number × lowest power of every shared letter.<br/><b>② Grouping:</b> four terms? Pair them: $x^3 + 5x^2 + 2x + 10 = x^2(x+5) + 2(x+5) = (x+5)(x^2+2)$.<br/><b>③ Product–sum:</b> for $x^2 + bx + c$, hunt two numbers with product $c$ and sum $b$, then drop them into brackets.<br/><b>④ Rational expressions:</b> factor top and bottom, cancel <i>whole factors</i>, then substitute. $\\frac{x^2 - 9}{x + 3} = \\frac{(x+3)(x-3)}{x+3} = x - 3$ (valid for $x \\ne -3$).<br/><br/>And the cube key from s3: $\\frac{x^3 - b^3}{x - b} = x^2 + bx + b^2$." },
+        { k: "example", title: "Worked Example", steps: ["Simplify $\\frac{x^2 - 25}{x + 5}$ and evaluate at $x = 7$.", "Factor the numerator (difference of squares): $x^2 - 25 = (x+5)(x-5)$.", "Cancel the whole factor $(x+5)$ — valid because $x \\ne -5$: the expression becomes $x - 5$.", "At $x = 7$: $7 - 5 = 2$. Check directly: $(49 - 25) \\div 12 = 24 \\div 12 = 2$ ✓."] },
+        { k: "mistake", title: "Trap Alarm", body: "Cancel <b>factors, never terms</b>. $\\frac{x^2 + y^2}{x + y}$ is NOT $x + y$ — test $x = 1, y = 1$: the left side is $1$, the right side is $2$. Only a factor of the <i>entire</i> numerator may cancel with a factor of the <i>entire</i> denominator. And when factorising, remove the GCF <i>first</i> — stopping early leaves the safe half-cracked." },
+        { k: "check", title: "Quick Check", body: "Factorise $x^2 - 8x + 16$.", options: ["$(x-4)(x+4)$", "$(x-4)^2$", "$(x+4)^2$", "$(x-8)(x+2)$"], correct: 1, why: "Product $16$, sum $-8$: the numbers are $-4$ and $-4$. Both brackets match — a perfect square trinomial: $(x-4)^2 = x^2 - 8x + 16$." },
+      ],
+    },
+  ],
+};

@@ -1,0 +1,117 @@
+import type { ChapterContent } from "@/lib/wars/types";
+import { bank, bankSize } from "./ch02.gen";
+
+export const chapter: ChapterContent = {
+  num: 2,
+  title: "Introduction to Linear Polynomials",
+  world: "Algebra Engine",
+  worldId: "algebra-engine",
+  emoji: "⚙️",
+  color: "#a78bfa",
+  grad: ["#8b5cf6", "#7c3aed"],
+  blurb: "Feed patterns into the great engine — watch straight lines emerge from ax + b and predict the future of every sequence.",
+  boss: { title: "The Infinite Assembly Line", desc: "Six escalating machine-breakers. Only flawless linear reasoning keeps the belts running." },
+  bank,
+  bankSize,
+  subtopics: [
+    {
+      id: "s1",
+      title: "Meet the Linear Polynomial",
+      objectives: [
+        "Recognise linear polynomials ax + b and name their degree, coefficients and constant term",
+        "Evaluate p(x) at any value, including negatives and fractions",
+        "Find the zero of a linear polynomial by solving ax + b = 0",
+      ],
+      viz: { kind: "coord", config: { mode: "line" } },
+      gens: [
+        { id: "mcq-degree", label: "Spot the linear polynomial" },
+        { id: "coeff-read", label: "Read coefficients" },
+        { id: "eval-poly", label: "Evaluate p(x)" },
+        { id: "find-zero", label: "Find the zero" },
+      ],
+      slides: [
+        { k: "hook", title: "The One-Gear Machine", body: "Deep inside the Algebra Engine hums its simplest machine: feed in a number $x$, and it multiplies by $a$, adds $b$, and rolls the result out. Give it $x = 4$ with gears $2$ and $3$ — out pops $11$. Give it $x = -6$ — out pops $-9$. One gear ratio, one starting offset, infinite outputs. Mathematicians call this machine $p(x) = ax + b$: the <b>linear polynomial</b>." },
+        { k: "explore", title: "Open the Engine Panel", body: "Slide the dials $m$ and $c$ and watch the line $y = mx + c$ swing across the plane. Every setting of the dials is one polynomial; the line is the polynomial's shadow. Notice: no matter how you slide, the shadow stays perfectly <b>straight</b> — that is what “linear” means." },
+        { k: "predict", title: "Predict First!", body: "If $p(x) = 2x + 3$, what is $p(-6)$?", options: ["$-9$", "$9$", "$-15$", "$15$"], correct: 0, why: "$p(-6) = 2 \\times (-6) + 3 = -12 + 3 = -9$. Multiply first, then add — and bracket negatives to keep the signs alive." },
+        { k: "explain", title: "Anatomy of ax + b", html: "$p(x) = ax + b$ has four vital organs:<br/><br/>• <b>Degree</b> = the highest power of $x$ = $1$ (that's why it's called <i>linear</i>).<br/>• <b>Coefficient</b> $a$ — multiplies the variable; it is the engine's <i>gear ratio</i>.<br/>• <b>Constant</b> $b$ — stands alone; the <i>starting offset</i>.<br/>• <b>Zero</b> — the input that makes $p(x) = 0$. Solve $ax + b = 0$ and you get $x = -\\frac{b}{a}$. Every linear polynomial has <b>exactly one</b> zero.<br/><br/>Contrast: $x^{2}+1$ has degree 2 (quadratic), $5y^{3}+y^{2}-8$ has degree 3 (cubic), and the lone constant $8$? Degree 0 — it's $8x^{0}$ in disguise." },
+        { k: "example", title: "Worked Example", steps: ["Let $p(x) = 3x - 5$. Evaluate $p(-2)$ and find the zero of $p$.", "Evaluate: $p(-2) = 3 \\times (-2) - 5 = -6 - 5 = -11$.", "Zero: set $p(x) = 0$, i.e. $3x - 5 = 0$.", "Solve: $3x = 5$, so $x = \\frac{5}{3}$.", "Answer: $p(-2) = -11$; the zero is $\\frac{5}{3}$."] },
+        { k: "mistake", title: "Trap Alarm", body: "The classic engine jam: $p(-3)$ for $p(x)=2x-7$ is <b>not</b> $2 \\times -3 - 7 = 2 - 3 - 7$… brackets matter! Write $2(-3) - 7 = -13$. And the zero of $p$ is the <i>input</i> that gives $0$, not the output $p(0) = -7$." },
+        { k: "check", title: "Quick Check", body: "What is the zero of $p(x) = 4x - 12$?", options: ["$3$", "$-3$", "$12$", "$48$"], correct: 0, why: "$4x - 12 = 0 \\Rightarrow 4x = 12 \\Rightarrow x = 3$. Check: $p(3) = 12 - 12 = 0$ ✓." },
+      ],
+    },
+    {
+      id: "s2",
+      title: "Linear Patterns",
+      objectives: [
+        "Build the nth-term rule T(n) = dn + c from a growing pattern",
+        "Predict any future term of a linear pattern instantly",
+        "Decode matchstick and tile chains into algebraic rules",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "pattern", config: { mode: "tiles" } },
+      gens: [
+        { id: "pattern-nth", label: "nth-term rules" },
+        { id: "matchstick-rule", label: "Matchstick chains" },
+      ],
+      slides: [
+        { k: "hook", title: "The Matchstick Factory", body: "A row of squares is welded from matchsticks: 1 square takes $4$ sticks, 2 squares take $7$, 3 take $10$ — every new square steals a wall from its neighbour. The foreman needs $1000$ squares by Friday. Counting stick by stick is impossible; the Algebra Engine whispers: <i>find the rule</i>." },
+        { k: "explore", title: "Watch the Pattern Grow", body: "The pattern lab builds the next term for you. Watch what never changes: each new term adds the <b>same number</b> of tiles. That constant step is the engine's gear ratio $d$ — the moment you spot it, you own the whole infinite sequence, past and future." },
+        { k: "predict", title: "Predict First!", body: "A pattern runs $5, 8, 11, 14, \\ldots$. Its rule is $T(n) = 3n + c$. What is $c$?", options: ["$5$", "$2$", "$3$", "$8$"], correct: 1, why: "$T(1) = 3(1) + c = 5$, so $c = 2$. The rule is $T(n) = 3n + 2$ — one gear ($3$) plus an offset ($2$)." },
+        { k: "explain", title: "The dn + c Blueprint", html: "Every linear pattern has the blueprint $T(n) = dn + c$.<br/><br/>• <b>Find $d$:</b> the constant step — $d = T(2) - T(1)$.<br/>• <b>Find $c$:</b> push in $n = 1$: $c = T(1) - d$.<br/>• <b>Predict:</b> term $1000$? Just compute $d(1000) + c$. No listing, no counting.<br/><br/>The step $d$ is the pattern's <i>engine speed</i>; $c$ is where the track starts. Two numbers describe an infinite conveyor belt — that is the power hidden inside a linear polynomial." },
+        { k: "example", title: "Worked Example", steps: ["The matchstick squares: $4, 7, 10, 13, \\ldots$ How many sticks in term 20?", "Step: $d = 7 - 4 = 3$ sticks per new square.", "Offset: $T(1) = 3(1) + c = 4$, so $c = 1$. Rule: $T(n) = 3n + 1$.", "Term 20: $T(20) = 3 \\times 20 + 1 = 61$.", "Answer: 61 sticks — one rule, any term, instantly."] },
+        { k: "mistake", title: "Trap Alarm", body: "Writing $T(n) = 3n$ for the squares pattern and calling it done — that gives $T(1) = 3$, but the first square needs $4$! The offset $c$ is not decoration; it encodes the special first shape. Always <b>test your rule on term 1</b> before trusting it." },
+        { k: "check", title: "Quick Check", body: "A pattern runs $7, 12, 17, 22, \\ldots$ Which term equals $102$?", options: ["$20^{th}$", "$21^{st}$", "$19^{th}$", "$22^{nd}$"], correct: 0, why: "Rule: $T(n) = 5n + 2$. Solve $5n + 2 = 102 \\Rightarrow 5n = 100 \\Rightarrow n = 20$. Rules run backwards too!" },
+      ],
+    },
+    {
+      id: "s3",
+      title: "Linear Relationships",
+      objectives: [
+        "Convert a table of values into the rule y = ax + b",
+        "Interpret the constant rate of change as the coefficient a",
+        "Solve unit-rate and break-even word problems with linear models",
+      ],
+      prereq: ["s1", "s2"],
+      viz: { kind: "coord", config: { mode: "line" } },
+      gens: [
+        { id: "table-rule", label: "Table → rule" },
+        { id: "rate-word", label: "Rate word problems" },
+        { id: "growth-decay", label: "Linear growth & decay" },
+      ],
+      slides: [
+        { k: "hook", title: "The Chess Club Bill", body: "A chess club charges ₹200 to join plus ₹50 per match. Play 1 match: ₹250. Play 2: ₹300. Play $m$ matches: ₹$(200 + 50m)$ — a linear polynomial wearing a price tag. Your wallet, a taxi meter, a draining water tank, a growing sunflower: the world runs on linear relationships, and each one hides two numbers — a <b>fixed part</b> and a <b>rate</b>." },
+        { k: "explore", title: "Tables Become Lines", body: "Slide the dials and watch the table of values march in lockstep beside the line $y = mx + c$. Every $+1$ of $x$ lifts $y$ by exactly $m$ — the table's constant difference and the line's steepness are the <b>same number</b> in two costumes." },
+        { k: "predict", title: "Predict First!", body: "A taxi charges ₹40 fixed plus ₹12 per km. Without full arithmetic: after the fixed ₹40, how much of a ₹136 bill is distance money?", options: ["₹136", "₹96", "₹40", "₹52"], correct: 1, why: "Distance money = $136 - 40 = ₹96$, which is $12 × 8$ — an 8 km ride. Peel the fixed part first, always." },
+        { k: "explain", title: "Fixed + Rate = Linear", html: "Every linear relationship splits as <b>total = fixed + rate × units</b>: $y = b + ax$.<br/><br/>• The <b>rate</b> $a$ = change in $y$ per unit of $x$ — the constant difference down the table.<br/>• The <b>fixed</b> part $b$ = the value at $x = 0$ — your entry row.<br/><br/>Growth: $h(d) = 5 + 2d$ (sunflower). Decay: $W(t) = 240 - 12t$ (tank). Negative rate = draining down. And when two plans both charge fixed + rate, set them <b>equal</b> to find where they balance." },
+        { k: "example", title: "Worked Example", steps: ["A tank: 240 L, draining 12 L/min. When is it half empty?", "Model: $W(t) = 240 - 12t$.", "Half empty = 120 L left: $240 - 12t = 120$.", "$12t = 120$, so $t = 10$ minutes.", "Check: $W(10) = 240 - 120 = 120$ ✓ — half of 240."] },
+        { k: "mistake", title: "Trap Alarm", body: "Multiplying the <b>fixed</b> fee by the units too: ₹40 fixed + ₹12/km is <i>not</i> $52x$. At $x = 0$ you still pay ₹40 — the fixed part never grows. Split every bill into fixed + rate × units before touching numbers." },
+        { k: "check", title: "Quick Check", body: "A plan costs ₹300 fixed + ₹10 per parcel; a rival costs ₹450 + ₹5 per parcel. At how many parcels do they cost the same?", options: ["$30$", "$15$", "$20$", "$45$"], correct: 0, why: "$300 + 10n = 450 + 5n \\Rightarrow 5n = 150 \\Rightarrow n = 30$. The ₹150 fee gap is repaid at ₹5 per parcel." },
+      ],
+    },
+    {
+      id: "s4",
+      title: "Visualising Linear Relationships",
+      objectives: [
+        "Draw and read the graph of y = ax + b",
+        "Identify the y-intercept b and connect the x-axis crossing to the zero",
+        "Judge slope direction and compare growth rates between lines",
+      ],
+      prereq: ["s1", "s3"],
+      viz: { kind: "coord", config: { mode: "line" } },
+      gens: [
+        { id: "graph-read", label: "Read points & lines" },
+        { id: "line-cross", label: "Axis crossings" },
+        { id: "compare-lines", label: "Compare lines" },
+      ],
+      slides: [
+        { k: "hook", title: "Lines That Tell Stories", body: "Plot $y = 2x + 1$: at $x=0$ it sits at height $1$; each step right, it climbs $2$. One straight cut across the plane — yet it encodes every value of a machine, every matchstick row, every taxi bill. Graphs are the polynomials' <b>portraits</b>, and a portrait answers questions at a glance: where does it start? where does it cross? is it climbing or diving?" },
+        { k: "explore", title: "Drive the Line", body: "Sweep the slope dial $m$ from negative through zero to positive: the line pivots from a downhill ski-slope, to flat, to a climb. Now sweep the intercept dial $c$: the whole line slides up and down <i>without tilting</i>. Slope steers the tilt; the intercept chooses the launch height." },
+        { k: "predict", title: "Predict First!", body: "The line $y = -3x + 1$ — which way does it tilt?", options: ["Upward (rises left→right)", "Downward (falls left→right)", "Perfectly flat", "Impossible to tell"], correct: 1, why: "Slope $-3$ is negative: every $+1$ in $x$ drops $y$ by $3$. Negative slope ⇒ downhill; the $+1$ only sets where it starts." },
+        { k: "explain", title: "Reading the Portrait", html: "For $y = ax + b$:<br/><br/>• <b>$y$-intercept:</b> the line cuts the $y$-axis at $(0, b)$ — set $x = 0$ and $ax$ vanishes. It is the machine's output at input zero.<br/>• <b>$x$-axis crossing:</b> set $y = 0$: $ax + b = 0$, so $x = -\\frac{b}{a}$. The crossing point <i>is</i> the zero of the polynomial — break-even, empty-tank, run-out moment.<br/>• <b>Slope $a$:</b> $a > 0$ climbs, $a < 0$ falls, bigger $|a|$ = steeper. The slope triangle shows it: walk $1$ right, rise $a$ up.<br/><br/>Two lines cross where their rules agree — that crossing solves 'when are they equal?' at a glance." },
+        { k: "example", title: "Worked Example", steps: ["Sketch $y = 2x - 4$ by finding where it cuts the axes.", "$y$-axis: $x = 0 \\Rightarrow y = -4$. Point $(0, -4)$.", "$x$-axis: $y = 0 \\Rightarrow 2x - 4 = 0 \\Rightarrow x = 2$. Point $(2, 0)$.", "Rule the line through both points — any third check, like $(1, -2)$, lands on it.", "The crossing $(2,0)$ is exactly the zero of $2x - 4$."] },
+        { k: "mistake", title: "Trap Alarm", body: "Mixing up the two axis crossings: on the <b>y-axis</b> put $x = 0$ (get $b$); on the <b>x-axis</b> put $y = 0$ (get $-b/a$). Swapping them hands you the wrong point every time. And a negative <b>constant</b> $b$ never makes a line fall — only a negative <b>slope</b> does." },
+        { k: "check", title: "Quick Check", body: "Where does $y = -2x + 8$ cross the $x$-axis?", options: ["$(4, 0)$", "$(0, 8)$", "$(8, 0)$", "$(-4, 0)$"], correct: 0, why: "Set $y = 0$: $-2x + 8 = 0 \\Rightarrow x = 4$. The zero of $-2x + 8$ is $4$ — same fact, two languages." },
+      ],
+    },
+  ],
+};

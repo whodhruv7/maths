@@ -1,0 +1,118 @@
+import type { ChapterContent } from "@/lib/wars/types";
+import { bank, bankSize } from "./ch05.gen";
+
+export const chapter: ChapterContent = {
+  num: 5,
+  title: "I'm Up and Down, and Round and Round",
+  world: "Circle Lab",
+  worldId: "circle-lab",
+  emoji: "⭕",
+  color: "#34d399",
+  grad: ["#10b981", "#059669"],
+  blurb: "Enter the lab where radius answers to your hand — chords, arcs and angles conspire in perfect roundness.",
+  boss: { title: "The Perfect Loop", desc: "Six circular traps spun by the Loop itself. Break the cycle, warrior." },
+  bank,
+  bankSize,
+  subtopics: [
+    {
+      id: "s1",
+      title: "Circle Vocabulary",
+      objectives: [
+        "Define a circle as the locus of points equidistant from a centre",
+        "Name and spot radius, chord, diameter, arc, segment, sector and semicircle",
+        "Explain the circle's complete rotational symmetry and its infinite lines of reflection",
+      ],
+      viz: { kind: "circle", config: { mode: "vocabulary" } },
+      gens: [
+        { id: "vocab-mcq", label: "Definition duels" },
+        { id: "vocab-numeric", label: "Radius, arcs & slices" },
+      ],
+      slides: [
+        { k: "hook", title: "The Wheel That Never Wobbles", body: "A potter's wheel spins at full speed. Press your finger anywhere on the rim — the wheel pushes back with the same smooth roundness every time. Raindrops make rings, the full moon looks perfect, cave painters at Gudahandi drew them 3,000 years ago. One single sentence explains them ALL: <i>every point the same distance from one fixed point</i>." },
+        { k: "explore", title: "Hands On the Rim", body: "The <b>Circle Lab</b> is live: drag the centre anywhere, grab the radius handle and watch $r$, $d$, circumference and area update together. Toggle on a <b>chord</b>, then a <b>diameter</b>, then shade a <b>sector</b> and a <b>segment</b>. Notice the diameter is just a chord that bullied its way through the centre." },
+        { k: "predict", title: "Predict First!", body: "A circle has radius 5 cm. Its longest chord measures…", options: ["5 cm", "10 cm", "somewhere between 5 and 10 cm — depends on the chord", "infinitely long"], correct: 1, why: "The longest chord is the diameter, which passes through the centre: $2 \\times 5 = 10$ cm. Every other chord keeps some distance from the centre and pays for it in length." },
+        { k: "explain", title: "The Family Portrait", html: "A <b>circle</b> is the locus of points in a plane at a fixed distance (the <b>radius</b>) from a fixed point (the <b>centre</b>).<br/><br/><b>Chord</b>: straight segment joining two points of the circle. The <b>diameter</b> is the chord through the centre — the longest one.<br/><b>Arc</b>: a piece of the rim; the short way is the <b>minor arc</b>, the long way the <b>major arc</b>.<br/><b>Segment</b> = chord + arc region. <b>Sector</b> = two radii + arc region (pizza slice).<br/><b>Semicircle</b>: half the circle — a 180° sector <i>and</i> a segment.<br/><br/><b>Symmetry:</b> rotate a circle by ANY angle and it maps onto itself; every diameter line is a mirror. No other shape is this free." },
+        { k: "example", title: "Worked Example", steps: ["A circle has centre $O$ and radius $7$ cm. A chord $PQ$ measures exactly $14$ cm. Classify $PQ$.", "Diameter $= 2r = 2 \\times 7 = 14$ cm.", "$PQ$ equals the diameter, and only ONE chord can be that long — the one through $O$.", "So $PQ$ passes through the centre: it is a diameter.", "Bonus: $PQ$ cuts the circle into two semicircles, and its distance from $O$ is $0$."] },
+        { k: "mistake", title: "Trap Alarm", body: "<b>Segment vs sector</b> — the classic mix-up. A <b>sector</b> is bounded by TWO RADII and an arc (pizza slice). A <b>segment</b> is bounded by a CHORD and an arc (circle with a flat shave). If the boundary has a straight line NOT through the centre, you are holding a segment, not a sector." },
+        { k: "check", title: "Quick Check", body: "In the lab figure, the shaded region is bounded by chord $XY$ and the arc it cuts off. The region is…", options: ["a sector", "a segment", "a semicircle", "an arc"], correct: 1, why: "One chord + one arc = a segment. A sector would need two radii in its boundary." },
+      ],
+    },
+    {
+      id: "s2",
+      title: "How Many Circles?",
+      objectives: [
+        "Count the circles passing through 1, 2 and 3 points",
+        "Prove why the centres of circles through two points form the perpendicular bisector",
+        "Construct the unique circumcircle of three non-collinear points",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "circle", config: { mode: "count" } },
+      gens: [
+        { id: "circle-count", label: "How many circles?" },
+        { id: "circum-triangle", label: "Circumcircle of triangles" },
+      ],
+      slides: [
+        { k: "hook", title: "Three Nails and a Rubber Band", body: "Hammer <b>two</b> nails into a board and loop a rubber band around them — pull it tight and it flops into a circle… but slide the loop sideways, up, down: <i>still</i> a circle through both nails. Add a <b>third</b> nail and everything locks. Suddenly there is exactly one loop possible. Why does the third point kill the freedom?" },
+        { k: "explore", title: "Marching Centres", body: "In <b>count mode</b>, drop 1 point: drag a circle's centre anywhere — it always passes through. Drop 2 points: the centre is now glued to one invisible line (the <b>perpendicular bisector</b>). Slide along it and watch the radius grow without limit. Drop 3 non-collinear points: the lab snaps to a single circle. Try 3 collinear points — no circle at all." },
+        { k: "predict", title: "Predict First!", body: "How many circles pass through two given points $A$ and $B$?", options: ["Exactly one", "Exactly two", "Infinitely many", "None — you need three points"], correct: 2, why: "Any point on the perpendicular bisector of $AB$ is equidistant from $A$ and $B$, so it can serve as a centre. A line has infinitely many points — infinitely many circles." },
+        { k: "explain", title: "The Freedom Countdown", html: "<b>1 point:</b> centre anywhere, radius = distance to it → <b>infinitely many</b> circles.<br/><b>2 points:</b> centre needs $OA = OB$, i.e. it must live on the <b>perpendicular bisector</b> of $AB$ → still infinitely many, but all centres on one line. The smallest radius comes from the midpoint ($AB$ = diameter).<br/><b>3 non-collinear points:</b> the centre must sit on the perpendicular bisector of $AB$ <b>and</b> of $AC$ — two lines cross at exactly one point. <b>Theorem 1: exactly one circle</b> (the <b>circumcircle</b>), its centre the <b>circumcentre</b>.<br/><b>3 collinear points:</b> the bisectors become parallel — no meeting point, <b>no circle</b>.<br/><br/><b>Circumcentre position:</b> acute triangle → inside; right triangle → midpoint of the hypotenuse; obtuse triangle → outside." },
+        { k: "example", title: "Worked Example", steps: ["A right triangle has legs $6$ cm and $8$ cm. Its vertices lie on a circle. Find the radius.", "Hypotenuse: $\\sqrt{6^2 + 8^2} = \\sqrt{100} = 10$ cm.", "The triangle is right-angled, so the circumcentre is the midpoint of the hypotenuse.", "Radius $= \\frac{10}{2} = 5$ cm.", "Check: the midpoint of the hypotenuse is exactly $5$ cm from all three vertices ✓"] },
+        { k: "mistake", title: "Trap Alarm", body: "<b>“Two points fix a circle.”</b> No — they fix only a LINE of possible centres. Students also often force a circle through three <b>collinear</b> points; impossible, since a line meets a circle in at most 2 points. And beware the converse: equal angles subtended by $AB$ pin points to a circle only when they are on the <b>same side</b> of $AB$." },
+        { k: "check", title: "Quick Check", body: "Three survey markers stand in a straight line across a field. The number of circles passing through all three is…", options: ["0", "1", "2", "infinitely many"], correct: 0, why: "Collinear points never share a circle: the perpendicular bisectors of the two segments are parallel and never meet, so no centre exists." },
+      ],
+    },
+    {
+      id: "s3",
+      title: "Chords & the Centre",
+      objectives: [
+        "Apply the theorem that the perpendicular from the centre bisects a chord (and its converse)",
+        "Use equal chords ⇔ equidistant from the centre",
+        "Solve chord problems with r² = d² + (c/2)²",
+      ],
+      prereq: ["s1"],
+      viz: { kind: "circle", config: { mode: "chords" } },
+      gens: [
+        { id: "chord-dist", label: "Chord ↔ distance" },
+        { id: "radius-chord-pyth", label: "Radius from chord data" },
+        { id: "eq-chords", label: "Equal chords & parallels" },
+        { id: "chord-farther", label: "Which chord is farther?" },
+      ],
+      slides: [
+        { k: "hook", title: "The Carpenter's Secret", body: "A carpenter must find the exact centre of a round tabletop — no marks, no tools but a folding rule. Her trick: measure any two chords, and for each, mark its midpoint and cut a perpendicular. The two perpendicular lines cross at exactly one spot. Drill there. Every perpendicular from the centre to a chord splits it in half — and she exploits it in reverse." },
+        { k: "explore", title: "Slide the Chord", body: "In <b>chord mode</b>, drag a chord across the circle. The dashed perpendicular from the centre always lands on the chord's <b>midpoint</b>. Watch the readouts: push the chord outward and it shrinks; pull it through the centre and it becomes the diameter at distance $0$. Make two chords equal in length — their distances match instantly." },
+        { k: "predict", title: "Predict First!", body: "A chord slides away from the centre of a circle. As it moves outward, its length…", options: ["increases", "decreases", "stays constant", "first increases, then decreases"], correct: 1, why: "From $c = 2\\sqrt{r^2 - d^2}$: bigger distance $d$ ⇒ smaller $c$. The diameter ($d = 0$) is the champion; chords shrink to nothing at the rim." },
+        { k: "explain", title: "Four Theorems, One Right Triangle", html: "<b>Theorem 4:</b> the line from the centre to a chord's midpoint is ⊥ to the chord. <b>Theorem 5 (converse):</b> the perpendicular from the centre bisects the chord.<br/><b>Theorems 6 & 7:</b> equal chords ⇔ equidistant from the centre.<br/><b>Theorem 8:</b> of two unequal chords, the longer is <b>closer</b> to the centre.<br/><br/>All numeric work flows through one right triangle $OMA$ ($O$ centre, $M$ chord midpoint):<br/>$r^2 = d^2 + \\left(\\frac{c}{2}\\right)^2$ — radius² = distance² + half-chord².<br/><br/>Two parallel chords? Distances <b>add</b> across the centre, <b>subtract</b> on the same side." },
+        { k: "example", title: "Worked Example", steps: ["A circle of radius $13$ cm has a chord $24$ cm long. Find its distance from the centre.", "Half-chord: $\\frac{24}{2} = 12$ cm.", "Pythagoras: $d^2 = 13^2 - 12^2 = 169 - 144 = 25$.", "$d = 5$ cm.", "Verify: $5^2 + 12^2 = 169 = 13^2$ ✓ — the classic 5-12-13 triangle hides inside every such problem."] },
+        { k: "mistake", title: "Trap Alarm", body: "<b>The half-chord sin.</b> Plugging the FULL chord into Pythagoras: $13^2 = 5^2 + 24^2$?? That gives $601$, not $169$. The perpendicular bisects the chord — you must halve it first: $13^2 = 5^2 + 12^2$. Also remember: for two parallel chords, decide from the diagram whether their distances <b>add</b> (opposite sides) or <b>subtract</b> (same side)." },
+        { k: "check", title: "Quick Check", body: "A circle of radius $5$ cm has a chord at perpendicular distance $3$ cm from the centre. The chord's length is…", options: ["4 cm", "6 cm", "8 cm", "10 cm"], correct: 2, why: "Half-chord $= \\sqrt{5^2 - 3^2} = 4$, so chord $= 8$ cm." },
+      ],
+    },
+    {
+      id: "s4",
+      title: "Angles in Circles & Concyclicity",
+      objectives: [
+        "Use: central angle = 2 × inscribed angle on the same arc",
+        "Exploit equal angles in the same segment and the 90° semicircle corollary",
+        "Apply cyclic-quadrilateral opposite angles (sum 180°) and the concyclicity test",
+      ],
+      prereq: ["s1", "s3"],
+      viz: { kind: "circle", config: { mode: "angles" } },
+      gens: [
+        { id: "central-inscribed", label: "Central vs inscribed" },
+        { id: "same-segment", label: "Same-segment chasing" },
+        { id: "semicircle-angle", label: "Semicircle right angles" },
+        { id: "cyclic-quad", label: "Cyclic quadrilaterals" },
+        { id: "arc-angle-word", label: "Circle story problems" },
+      ],
+      slides: [
+        { k: "hook", title: "The Arch That Never Lies", body: "Walk along the rim of a circular stadium arcade, keeping two gateposts $A$ and $B$ in view. Your friend walks the opposite stretch of the same arc. However far apart you roam, you BOTH see the posts under exactly the same angle. The circle is the only shape that grants this right to every spectator in the segment." },
+        { k: "explore", title: "Drag the Spectator", body: "In <b>angles mode</b>, drag point $C$ around the major arc: $\\angle ACB$ freezes in place. Toggle the centre to see $\\angle AOB = 2 \\angle ACB$ breathe in sync. Snap $C$ onto a semicircle's rim — the angle locks at $90^\\circ$. Then complete the cyclic quadrilateral $ABCD$ and watch opposite angles swap $180^\\circ$ between them." },
+        { k: "predict", title: "Predict First!", body: "An arc subtends $80^\\circ$ at the centre of its circle. The angle it subtends at a point on the remaining part of the circle is…", options: ["80°", "160°", "40°", "90°"], correct: 2, why: "Theorem 9: the centre gets double. Inscribed angle $= \\frac{80^\\circ}{2} = 40^\\circ$." },
+        { k: "explain", title: "One Theorem, Four Superpowers", html: "<b>Theorem 9:</b> arc at the centre $= 2 \\times$ arc at any rim point outside the arc. From it:<br/><b>① Same segment:</b> $\\angle ADB = \\angle ACB$ for any $C, D$ on the same side — the arc never changes its story.<br/><b>② Semicircle:</b> a diameter subtends $180^\\circ$ at the centre, so any rim angle in a semicircle is $\\angle ACB = 90^\\circ$.<br/><b>③ Cyclic quadrilateral:</b> opposite angles catch complementary arcs, so $\\angle A + \\angle C = \\angle B + \\angle D = 180^\\circ$.<br/><b>④ Concyclicity test (Th 10):</b> if two same-side points see $AB$ under equal angles, all four points lie on one circle.<br/><br/><b>Reflex care:</b> a major arc's central angle is the REFLEX angle $= 360^\\circ -$ minor angle." },
+        { k: "example", title: "Worked Example", steps: ["$ABCD$ is cyclic with $\\angle A = 70^\\circ$ and $\\angle B = 85^\\circ$. Find $\\angle C$ and $\\angle D$.", "$\\angle C$ is opposite $\\angle A$: $\\angle C = 180^\\circ - 70^\\circ = 110^\\circ$.", "$\\angle D$ is opposite $\\angle B$: $\\angle D = 180^\\circ - 85^\\circ = 95^\\circ$.", "Sanity check: $70 + 85 + 110 + 95 = 360^\\circ$ — every quadrilateral's angle sum holds ✓", "Notice we NEVER subtracted adjacent pairs — opposite pairing is everything."] },
+        { k: "mistake", title: "Trap Alarm", body: "<b>The reflex blind spot.</b> When a point sits on the MAJOR arc, the central angle you must double is the minor one — but when the question asks for the angle 'swept the long way', you need the reflex: $360^\\circ - 2\\angle C$. Second trap: pairing ADJACENT angles of a cyclic quad and subtracting from 180° — only OPPOSITE pairs are supplementary. Always trace which arc each angle actually subtends." },
+        { k: "check", title: "Quick Check", body: "$AB$ is a diameter; $C$ is on the circle with $\\angle CAB = 35^\\circ$. Then $\\angle CBA$ equals…", options: ["35°", "45°", "55°", "90°"], correct: 2, why: "Angle in a semicircle: $\\angle ACB = 90^\\circ$. The acute angles of a right triangle complement: $\\angle CBA = 90^\\circ - 35^\\circ = 55^\\circ$." },
+      ],
+    },
+  ],
+};
