@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[10725,["/maths/_next/static/chunks/a76e21727cce163b.js","/maths/_next/static/chunks/27749841b463623e.js","/maths/_next/static/chunks/600b06fa885e39bf.js","/maths/_next/static/chunks/dc148ff25cf10bb0.js","/maths/_next/static/chunks/43f2e6f61721b7c4.js"],"default"]
+3:I[97367,["/maths/_next/static/chunks/ff1a16fafef87110.js","/maths/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"P0Np2WdpF6e-rY2RYMsxu","rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/maths/_next/static/chunks/600b06fa885e39bf.js","async":true}],["$","script","script-1",{"src":"/maths/_next/static/chunks/dc148ff25cf10bb0.js","async":true}],["$","script","script-2",{"src":"/maths/_next/static/chunks/43f2e6f61721b7c4.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
